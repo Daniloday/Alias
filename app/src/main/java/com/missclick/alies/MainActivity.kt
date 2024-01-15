@@ -21,6 +21,8 @@ class MainActivity : ComponentActivity() {
 
                 val vova = 22
 
+                var alexm = 33
+
             }
         }
     }
