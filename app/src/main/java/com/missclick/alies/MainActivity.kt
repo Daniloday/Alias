@@ -18,6 +18,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             AliesTheme {
                 val dfbgdrf = 33333
+
+                val vova = 22
+
             }
         }
     }
