@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AliesTheme {
-
+                val dfbgdrf = 33333
             }
         }
     }
