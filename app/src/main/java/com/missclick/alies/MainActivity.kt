@@ -11,20 +11,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.missclick.alies.ui.theme.AliesTheme
+import com.missclick.alies.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AliesTheme {
-                val dfbgdrf = 33333
 
-                val vova = 22
 
-                var alexm = 33
 
             }
         }
     }
+
+
+
+
 }
 
