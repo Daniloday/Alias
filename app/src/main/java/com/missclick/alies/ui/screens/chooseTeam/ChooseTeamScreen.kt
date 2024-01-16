@@ -25,11 +25,14 @@ import com.missclick.alies.ui.theme.AppTheme
 @Composable
 fun ChooseTeamScreen(){
     val context = LocalContext.current
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ){
+
+
 
         Text(text = context.getString(R.string.choose_team),style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
 
