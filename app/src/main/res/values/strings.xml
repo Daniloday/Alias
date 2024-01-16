@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Alies</string>
     <string name="choose_team">Choose Team:</string>
+    <string name="choose_vocabulary">Choose Vocabulary:</string>
     <string name="next_button">Next</string>
 
     <string name="lions">Lions</string>

@@ -13,7 +13,7 @@ fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.MENU.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.CHOOSE_VOCABULARY.name){
         composable(NavigationTree.MENU.name){
             MenuScreen()
         }
