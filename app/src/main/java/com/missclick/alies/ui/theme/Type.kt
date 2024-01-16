@@ -7,13 +7,15 @@ import androidx.compose.ui.unit.sp
 
 
 data class Typography(
-    val bigLetter : TextStyle
+    val headerText : TextStyle,
 )
 
 
 val typography = Typography(
-    bigLetter = TextStyle(
-        fontSize = 39.sp
+    headerText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 36.sp,
+        fontWeight = FontWeight.Bold
     )
 )
 

@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.missclick.alies.ui.navigation.Navigation
 import com.missclick.alies.ui.theme.AliesTheme
 import com.missclick.alies.ui.theme.AppTheme
 
@@ -18,9 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AliesTheme {
-
-
-
+                Navigation()
             }
         }
     }
