@@ -1,7 +1,5 @@
 {
-  "dictionaries" : [
-    {"easy" : ["home", "office", "city"]},
-    {"medium" : ["studio", "market", "factory"]},
-    {"hard" : ["important", "impossible", "yummy"]}
-  ]
+  "easy" : ["home", "office", "city"],
+  "medium" : ["studio", "market", "factory"],
+  "hard" : ["important", "impossible", "yummy"]
 }

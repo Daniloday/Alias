@@ -7,6 +7,14 @@ import com.missclick.alies.data.repository.Repository
 class MenuViewModel(val repository: Repository) : ViewModel() {
 
 
+    init {
+        println("init")
+        println(repository.getAllTeams())
+        println(repository.getDictionariesNames())
+        println(repository.getWordsByDictionariesName(listOf("medium","hard")))
+    }
+
+
 
 
 }

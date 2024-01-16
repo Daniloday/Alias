@@ -5,7 +5,7 @@ import android.content.Context
 import com.missclick.alies.R
 import com.missclick.alies.data.models.Team
 
-class LocalTeams(val context : Context) : ILocalTeams {
+class LocalTeams(private val context : Context) : ILocalTeams {
     @SuppressLint("ResourceType")
     override fun getAll(): List<Team> {
         return listOf(

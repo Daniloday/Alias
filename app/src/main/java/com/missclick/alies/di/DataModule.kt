@@ -10,8 +10,9 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
+    single { Gson() }
     single { LocalTeams(get()) }
-    single { LocalDictionaries(get()) }
+    single { LocalDictionaries(get(), get()) }
     single { Repository(get(), get()) }
     single { GameSettings() }
 }

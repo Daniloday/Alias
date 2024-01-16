@@ -14,6 +14,7 @@ import com.missclick.alies.ui.theme.AppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             AliesTheme {
                 Box(modifier = Modifier.fillMaxSize().background(AppTheme.colors.primaryBackground)){

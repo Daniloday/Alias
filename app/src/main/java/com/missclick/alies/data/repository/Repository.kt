@@ -9,7 +9,7 @@ import com.missclick.alies.data.models.Team
 import com.missclick.alies.data.repository.dictionary.LocalDictionaries
 import com.missclick.alies.data.repository.team.LocalTeams
 
-class Repository(val localDictionaries: LocalDictionaries, val localTeams: LocalTeams) : IRepository {
+class Repository(private val localDictionaries: LocalDictionaries, private val localTeams: LocalTeams) : IRepository {
 
     override fun getAllTeams(): List<Team> {
         return localTeams.getAll()
