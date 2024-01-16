@@ -3,6 +3,7 @@ package com.missclick.alies.ui.screens.chooseVocabulary
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,34 +30,31 @@ fun ChooseVocabularyScreen(){
     val context = LocalContext.current
 
     Box(modifier = Modifier.fillMaxSize()){
+        val teamList = mutableListOf(
+            "Lions",
+            "Lions",
+            "Lions",
+            "Lions"
+        )
 
         Column(
             Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ){
-
             Text(text = context.getString(R.string.choose_vocabulary),style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
-
-            val teamList = mutableListOf(
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions"
-            )
 
             Divider(modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp), color = AppTheme.colors.primary)
 
-            LazyColumn(content = {
+            LazyColumn(modifier = Modifier.fillMaxHeight().padding(top = 24.dp), verticalArrangement = Arrangement.spacedBy(24.dp),content = {
                 itemsIndexed(teamList){
                         index, item ->
                     VocabularyCard(item)
 
                 }
             })
-
         }
 
         Box (modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp)){
