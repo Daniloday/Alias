@@ -15,5 +15,23 @@ fun Navigation(){
         composable(NavigationTree.MENU.name){
             MenuScreen()
         }
+        composable(NavigationTree.PREPARE_FOR_GAME.name){
+
+        }
+        composable(NavigationTree.TAP_TO_START.name){
+
+        }
+        composable(NavigationTree.GAME_SCREEN.name){
+
+        }
+        composable(NavigationTree.ROUND_RESULT_SCREEN.name){
+
+        }
+        composable(NavigationTree.TEAM_RESULT_SCREEN.name){
+
+        }
+        composable(NavigationTree.WIN.name){
+
+        }
     }
 }
