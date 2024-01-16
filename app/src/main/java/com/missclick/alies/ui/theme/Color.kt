@@ -1,11 +1,27 @@
 package com.missclick.alies.ui.theme
 
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+
+data class Colors (
+    val primaryBackground : Color,
+    val secondaryBackground : Color,
+    val accent: Color,
+    val primary: Color
+)
+
+
+val darkColorPalette = Colors(
+    primaryBackground = Color(0xFF332941),
+    secondaryBackground = Color(0xFF3B3486),
+    accent = Color(0xFF864AF9),
+    primary = Color(0xFFF8E55A)
+)
+
+
+val LocalColorProvider = staticCompositionLocalOf<Colors> {
+    error("No colors")
+}
+
