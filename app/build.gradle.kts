@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.missclick.alies"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.missclick.alies"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

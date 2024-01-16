@@ -1,10 +1,10 @@
 package com.missclick.alies.ui.screens.menu
 
 import androidx.lifecycle.ViewModel
-import com.missclick.alies.data.IRepository
-import com.missclick.alies.data.Repository
+import com.missclick.alies.data.repository.IRepository
+import com.missclick.alies.data.repository.Repository
 
-class MenuViewModel(val repository: IRepository) : ViewModel() {
+class MenuViewModel(val repository: Repository) : ViewModel() {
 
 
 
