@@ -22,16 +22,16 @@ fun Navigation(){
             MenuScreen()
         }
         composable(NavigationTree.PREPARE_FOR_GAME.name){
-
+            PrepareForGame()
         }
         composable(NavigationTree.TAP_TO_START.name){
-
+            TapToStart()
         }
         composable(NavigationTree.GAME_SCREEN.name){
-
+            GameScreen()
         }
         composable(NavigationTree.ROUND_RESULT_SCREEN.name){
-
+            RoundResultScreen()
         }
         composable(NavigationTree.TEAM_RESULT_SCREEN.name){
 
