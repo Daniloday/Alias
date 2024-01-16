@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.R
@@ -28,6 +29,9 @@ import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
 fun GameScreen() {
+
+    val context = LocalContext.current
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -66,7 +70,7 @@ fun GameScreen() {
             ) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
-                        text = "skip".uppercase(),
+                        text = "${context.getString(R.string.skip)}".uppercase(),
                         style = AppTheme.typography.teamCardText,
                         color = AppTheme.colors.primary
                     )
@@ -79,7 +83,7 @@ fun GameScreen() {
             ) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
-                        text = "Guessed".uppercase(),
+                        text = "${context.getString(R.string.guessed)}".uppercase(),
                         style = AppTheme.typography.headerTextBold,
                         color = AppTheme.colors.primary
                     )

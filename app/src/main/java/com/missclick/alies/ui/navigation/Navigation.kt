@@ -17,7 +17,7 @@ fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.MENU.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.ROUND_RESULT_SCREEN.name){
         composable(NavigationTree.MENU.name){
             MenuScreen()
         }

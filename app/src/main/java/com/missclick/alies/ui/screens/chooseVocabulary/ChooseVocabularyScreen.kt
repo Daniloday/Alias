@@ -58,7 +58,7 @@ fun ChooseVocabularyScreen(){
         }
 
         Box (modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp)){
-            NextButton()
+            NextButton(){}
         }
 
     }

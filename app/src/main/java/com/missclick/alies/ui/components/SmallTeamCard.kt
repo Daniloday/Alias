@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -21,7 +22,9 @@ import com.missclick.alies.ui.theme.AppTheme
 fun SmallTeamCard(teamImage: Int, teamName: String) {
 
     Card(
-        modifier = Modifier.size(128.dp, 48.dp),
+        modifier = Modifier
+            .padding(4.dp)
+            .size(128.dp, 48.dp),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(0.dp),
         colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
@@ -33,8 +36,16 @@ fun SmallTeamCard(teamImage: Int, teamName: String) {
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Image(painter = painterResource(id = teamImage), contentDescription = "team image", modifier = Modifier.size(36.dp))
-            Text(text = teamName, style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
+            Image(
+                painter = painterResource(id = teamImage),
+                contentDescription = "team image",
+                modifier = Modifier.size(36.dp)
+            )
+            Text(
+                text = teamName,
+                style = AppTheme.typography.teamCardText,
+                color = AppTheme.colors.primary
+            )
 
 
         }

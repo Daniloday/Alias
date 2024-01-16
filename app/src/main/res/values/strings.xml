@@ -1,8 +1,33 @@
 <resources>
-    <string name="app_name">Alies</string>
+    <string name="app_name">Alias</string>
     <string name="choose_team">Choose Team:</string>
     <string name="choose_vocabulary">Choose Vocabulary:</string>
     <string name="next_button">Next</string>
 
+    <string name="time">Time</string>
+    <string name="seconds">sec</string>
+    <string name="goals">Goal</string>
+    <string name="teams">Teams</string>
+    <string name="points">points</string>
+
+    <string name="turn">Turn</string>
+    <string name="start">Start</string>
+
+    <string name="skip">Skip</string>
+    <string name="guessed">Guessed</string>
+
+    <string name="results">Results</string>
+
+
     <string name="lions">Lions</string>
+    <string name="capybaras">Capybaras</string>
+    <string name="tigers">Tigers</string>
+    <string name="rhinos">Rhinoceroses</string>
+    <string name="rabbit">Rabbits</string>
+    <string name="owls">Owls</string>
+    <string name="wolves">Wolves</string>
+    <string name="hedgehogs">Hedgehogs</string>
+    <string name="giraffes">Giraffes</string>
+    <string name="agama">Agama</string>
+
 </resources>

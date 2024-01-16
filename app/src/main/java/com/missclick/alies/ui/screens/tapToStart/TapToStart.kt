@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.BigTeamCard
@@ -19,6 +20,9 @@ import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
 fun TapToStart() {
+
+    val context = LocalContext.current
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -26,7 +30,7 @@ fun TapToStart() {
     ) {
 
         Text(
-            text = "TURN",
+            text = "${context.getString(R.string.turn)}",
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
@@ -40,7 +44,7 @@ fun TapToStart() {
         ) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
-                    text = "Start".uppercase(),
+                    text = "${context.getString(R.string.start)}".uppercase(),
                     style = AppTheme.typography.headerTextBold,
                     color = AppTheme.colors.primary
                 )

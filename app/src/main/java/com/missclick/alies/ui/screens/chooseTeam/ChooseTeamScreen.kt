@@ -70,7 +70,7 @@ fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
             .align(Alignment.BottomCenter)
             .padding(bottom = 24.dp)){
             //todo click on button
-            NextButton()
+            NextButton(){}
         }
 
     }
