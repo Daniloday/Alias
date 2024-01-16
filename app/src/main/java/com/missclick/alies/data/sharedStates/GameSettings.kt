@@ -1,7 +1,9 @@
 package com.missclick.alies.data.sharedStates
 
+import kotlinx.coroutines.flow.MutableStateFlow
+
 class GameSettings {
 
-    //print
+    val state = MutableStateFlow(GameSettingsState())
 
 }
