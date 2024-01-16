@@ -1,6 +1,7 @@
 package com.missclick.alies.di
 
 
+import com.google.gson.Gson
 import com.missclick.alies.data.repository.Repository
 import com.missclick.alies.data.repository.dictionary.LocalDictionaries
 import com.missclick.alies.data.repository.team.LocalTeams

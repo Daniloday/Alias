@@ -25,9 +25,11 @@ import com.missclick.alies.ui.components.BigTeamCard
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
 import com.missclick.alies.ui.theme.AppTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ChooseTeamScreen(){
+fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
+
     val context = LocalContext.current
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -38,28 +40,13 @@ fun ChooseTeamScreen(){
             verticalArrangement = Arrangement.Top
         ){
 
-            Text(text = context.getString(R.string.choose_team),style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
-
-            val choseTeamList = mutableListOf(
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions"
-            )
-
-            val teamList = mutableListOf(
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions"
-            )
-
+            Text(text = context.getString(R.string.choose_team), style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
 
             LazyRow(content = {
-                itemsIndexed(choseTeamList){
-                        index, item ->
-
-                    SmallTeamCard(teamImage = R.drawable.agama, teamName = item)
+                itemsIndexed(vm.state.value.choseTeamList){
+                        _, item ->
+                    //todo click on card
+                    SmallTeamCard(teamImage = item.image, teamName = item.name)
 
                 }
             })
@@ -69,17 +56,20 @@ fun ChooseTeamScreen(){
                 .height(1.dp), color = AppTheme.colors.primary)
 
             LazyColumn(content = {
-                itemsIndexed(teamList){
-                        index, item ->
-
-                    BigTeamCard(teamImage = R.drawable.capybara, teamName = item)
+                itemsIndexed(vm.state.value.teamList){
+                        _, item ->
+                    //todo click on card
+                    BigTeamCard(teamImage = item.image, teamName = item.name)
 
                 }
             })
 
         }
 
-        Box (modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp)){
+        Box (modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .padding(bottom = 24.dp)){
+            //todo click on button
             NextButton()
         }
 
