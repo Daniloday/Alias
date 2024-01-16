@@ -48,13 +48,11 @@ fun VocabularyCard(vocabulary: String){
         colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
     ) {
 
-        Row(
-            Modifier.fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
+        Box(
+            Modifier.fillMaxSize().align(Alignment.Start),
         ) {
             Box(
-                modifier = Modifier.size(32.dp).align(Alignment.CenterVertically).clip(shape = RoundedCornerShape(10.dp)).border(4.dp, AppTheme.colors.primary,shape = RoundedCornerShape(10.dp)),
+                modifier = Modifier.padding(start = 24.dp).size(32.dp).align(Alignment.CenterStart).clip(shape = RoundedCornerShape(10.dp)).border(4.dp, AppTheme.colors.primary,shape = RoundedCornerShape(10.dp)),
             ) {
                 Checkbox(
                     checked = myState,
@@ -66,7 +64,7 @@ fun VocabularyCard(vocabulary: String){
                     )
                 )
             }
-            Text(text = vocabulary, style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
+            Text(text = vocabulary,modifier = Modifier.align(Alignment.Center), style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
         }
     }
 }
