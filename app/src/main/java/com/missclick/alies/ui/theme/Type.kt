@@ -13,6 +13,7 @@ import com.missclick.alies.R
 data class Typography(
     val headerTextBold : TextStyle,
     val headerTextThin : TextStyle,
+    val nextButtonText : TextStyle,
 )
 
 
@@ -27,6 +28,11 @@ val typography = Typography(
         fontSize = 36.sp,
         fontWeight = FontWeight.Normal
     ),
+    nextButtonText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 48.sp,
+        fontWeight = FontWeight.Normal
+    )
 
 
 )

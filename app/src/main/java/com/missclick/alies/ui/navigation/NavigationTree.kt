@@ -1,5 +1,7 @@
 package com.missclick.alies.ui.navigation
 
 enum class NavigationTree {
-    MENU
+    MENU,
+    CHOOSE_TEAM,
+    CHOOSE_VOCABULARY
 }
