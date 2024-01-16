@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamScreen
+import com.missclick.alies.ui.screens.chooseVocabulary.ChooseVocabularyScreen
 import com.missclick.alies.ui.screens.menu.MenuScreen
 
 @Composable
