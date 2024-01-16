@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.missclick.alies"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.missclick.alies"
