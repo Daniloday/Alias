@@ -23,7 +23,8 @@ fun SmallTeamCard(teamImage: Int, teamName: String) {
     Card(
         modifier = Modifier.size(128.dp, 48.dp),
         shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(0.dp)
+        elevation = CardDefaults.cardElevation(0.dp),
+        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
     ) {
 
         Row(

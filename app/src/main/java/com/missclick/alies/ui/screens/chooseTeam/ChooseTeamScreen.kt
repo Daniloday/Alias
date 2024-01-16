@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -20,56 +21,70 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.R
+import com.missclick.alies.ui.components.BigTeamCard
+import com.missclick.alies.ui.components.NextButton
+import com.missclick.alies.ui.components.SmallTeamCard
 import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
 fun ChooseTeamScreen(){
     val context = LocalContext.current
 
-    Column(
-        Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ){
+    Box(modifier = Modifier.fillMaxSize()){
+
+        Column(
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ){
+
+            Text(text = context.getString(R.string.choose_team),style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
+
+            val choseTeamList = mutableListOf(
+                "Lions",
+                "Lions",
+                "Lions",
+                "Lions"
+            )
+
+            val teamList = mutableListOf(
+                "Lions",
+                "Lions",
+                "Lions",
+                "Lions"
+            )
 
 
+            LazyRow(content = {
+                itemsIndexed(choseTeamList){
+                        index, item ->
 
-        Text(text = context.getString(R.string.choose_team),style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
+                    SmallTeamCard(teamImage = R.drawable.agama, teamName = item)
 
-        val choseTeamList = mutableListOf(
-            "Lions",
-            "Lions",
-            "Lions",
-            "Lions"
-        )
+                }
+            })
 
-        val teamList = mutableListOf(
-            "Lions",
-            "Lions",
-            "Lions",
-            "Lions"
-        )
+            Divider(modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp), color = AppTheme.colors.primary)
 
+            LazyColumn(content = {
+                itemsIndexed(teamList){
+                        index, item ->
 
-        LazyColumn(content = {
-            itemsIndexed(choseTeamList){
-                    index, item ->
+                    BigTeamCard(teamImage = R.drawable.capybara, teamName = item)
 
-                //Team Card
+                }
+            })
 
-            }
-        })
+        }
 
-        Divider(modifier = Modifier.fillMaxWidth().height(1.dp), color = AppTheme.colors.primary)
-
-        LazyColumn(content = {
-            itemsIndexed(teamList){
-                    index, item ->
-
-                //Team Card
-
-            }
-        })
+        Box (modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 24.dp)){
+            NextButton()
+        }
 
     }
+
+
+
 }

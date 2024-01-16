@@ -22,7 +22,8 @@ fun BigTeamCard(teamImage: Int, teamName: String) {
     Card(
         modifier = Modifier.size(128.dp, 100.dp),
         shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(0.dp)
+        elevation = CardDefaults.cardElevation(0.dp),
+        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
     ) {
 
         Column(
