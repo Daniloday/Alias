@@ -15,6 +15,8 @@ data class Typography(
     val headerTextThin : TextStyle,
     val nextButtonText : TextStyle,
     val teamCardText : TextStyle,
+    val roundCardText : TextStyle,
+    val roundWordsText : TextStyle
 )
 
 
@@ -39,6 +41,16 @@ val typography = Typography(
         fontSize = 24.sp,
         fontWeight = FontWeight.Normal
     ),
+    roundCardText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 64.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    roundWordsText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playregular)),
+        fontSize = 32.sp,
+        fontWeight = FontWeight.Normal
+    )
 
 
 )

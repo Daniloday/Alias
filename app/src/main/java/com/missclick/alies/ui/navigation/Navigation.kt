@@ -6,14 +6,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamScreen
 import com.missclick.alies.ui.screens.chooseVocabulary.ChooseVocabularyScreen
+import com.missclick.alies.ui.screens.gameScreen.GameScreen
 import com.missclick.alies.ui.screens.menu.MenuScreen
+import com.missclick.alies.ui.screens.prepareForGame.PrepareForGame
+import com.missclick.alies.ui.screens.roundResultScreen.RoundResultScreen
+import com.missclick.alies.ui.screens.tapToStart.TapToStart
 
 @Composable
 fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.CHOOSE_VOCABULARY.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.MENU.name){
         composable(NavigationTree.MENU.name){
             MenuScreen()
         }
