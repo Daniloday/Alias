@@ -17,9 +17,15 @@ fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.ROUND_RESULT_SCREEN.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.CHOOSE_TEAM.name){
         composable(NavigationTree.MENU.name){
             MenuScreen()
+        }
+        composable(NavigationTree.CHOOSE_TEAM.name){
+            ChooseTeamScreen(navHostController)
+        }
+        composable(NavigationTree.CHOOSE_VOCABULARY.name){
+            ChooseVocabularyScreen()
         }
         composable(NavigationTree.PREPARE_FOR_GAME.name){
             PrepareForGame()
@@ -38,12 +44,6 @@ fun Navigation(){
         }
         composable(NavigationTree.WIN.name){
 
-        }
-        composable(NavigationTree.CHOOSE_TEAM.name){
-            ChooseTeamScreen()
-        }
-        composable(NavigationTree.CHOOSE_VOCABULARY.name){
-            ChooseVocabularyScreen()
         }
     }
 }

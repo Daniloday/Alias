@@ -31,7 +31,8 @@ class ChooseTeamViewModel(
     override fun obtainEvent(event: ChooseTeamEvent) {
         when(event){
             is ChooseTeamEvent.Next -> {next()}
-            is ChooseTeamEvent.TeamClick -> {teamClick(event.item)}
+            is ChooseTeamEvent.TeamAllClick -> {teamAllClick(event.item)}
+            is ChooseTeamEvent.TeamChoseClick -> {teamChoseClick(event.item)}
         }
     }
 
@@ -41,8 +42,18 @@ class ChooseTeamViewModel(
         )
     }
 
-    private fun teamClick(item : Team){
+    private fun teamAllClick(item : Team){
+        _state.value = state.value.copy(
+            teamList = state.value.teamList.dropWhile { it == item },
+            choseTeamList = state.value.choseTeamList.plus(item)
+        )
+    }
 
+    private fun teamChoseClick(item : Team){
+        _state.value = state.value.copy(
+            teamList = state.value.teamList.plus(item),
+            choseTeamList = state.value.choseTeamList.dropWhile { it == item }
+        )
     }
 
 

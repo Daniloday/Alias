@@ -5,6 +5,7 @@ import java.util.Objects
 
 sealed class ChooseTeamEvent{
     object Next : ChooseTeamEvent()
-    class TeamClick(val item : Team) : ChooseTeamEvent()
+    class TeamAllClick(val item : Team) : ChooseTeamEvent()
+    class TeamChoseClick(val item : Team) : ChooseTeamEvent()
 }
 

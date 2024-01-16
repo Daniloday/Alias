@@ -16,21 +16,27 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.BigTeamCard
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
+import com.missclick.alies.ui.navigation.NavigationTree
+import com.missclick.alies.ui.screens.chooseTeam.models.ChooseTeamEvent
 import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
+fun ChooseTeamScreen(navController: NavController, vm : ChooseTeamViewModel = koinViewModel()){
 
     val context = LocalContext.current
+    val viewState by vm.state.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()){
 
@@ -43,10 +49,11 @@ fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
             Text(text = context.getString(R.string.choose_team), style = AppTheme.typography.headerTextBold, modifier = Modifier.padding(top = 8.dp) ,color = AppTheme.colors.primary)
 
             LazyRow(content = {
-                itemsIndexed(vm.state.value.choseTeamList){
+                itemsIndexed(viewState.choseTeamList){
                         _, item ->
-                    //todo click on card
-                    SmallTeamCard(teamImage = item.image, teamName = item.name)
+                    SmallTeamCard(teamImage = item.image, teamName = item.name){
+                        vm.obtainEvent(ChooseTeamEvent.TeamChoseClick(item))
+                    }
 
                 }
             })
@@ -56,10 +63,11 @@ fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
                 .height(1.dp), color = AppTheme.colors.primary)
 
             LazyColumn(content = {
-                itemsIndexed(vm.state.value.teamList){
+                itemsIndexed(viewState.teamList){
                         _, item ->
-                    //todo click on card
-                    BigTeamCard(teamImage = item.image, teamName = item.name)
+                    BigTeamCard(teamImage = item.image, teamName = item.name){
+                        vm.obtainEvent(ChooseTeamEvent.TeamAllClick(item))
+                    }
 
                 }
             })
@@ -69,8 +77,10 @@ fun ChooseTeamScreen(vm : ChooseTeamViewModel = koinViewModel()){
         Box (modifier = Modifier
             .align(Alignment.BottomCenter)
             .padding(bottom = 24.dp)){
-            //todo click on button
-            NextButton(){}
+            NextButton(){
+                vm.obtainEvent(ChooseTeamEvent.Next)
+                navController.navigate(NavigationTree.CHOOSE_VOCABULARY.name)
+            }
         }
 
     }
