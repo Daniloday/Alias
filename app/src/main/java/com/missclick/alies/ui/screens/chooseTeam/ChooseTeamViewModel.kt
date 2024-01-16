@@ -14,7 +14,8 @@ import kotlinx.coroutines.flow.StateFlow
 class ChooseTeamViewModel(
     repository: Repository,
     private val gameSettings: GameSettings
-) : ViewModel(), EventHandler<ChooseTeamEvent> {
+) : ViewModel(), EventHandler<ChooseTeamEvent>
+{
 
 
     private val _state : MutableStateFlow<ChooseTeamState> = MutableStateFlow(ChooseTeamState())

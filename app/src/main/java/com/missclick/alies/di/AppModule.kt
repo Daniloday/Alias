@@ -9,12 +9,10 @@ import org.koin.dsl.module
 val appModule = module {
 
     viewModel {
-        MenuViewModel(
-            get()
-        )
-        ChooseTeamViewModel(
-            get(), get()
-        )
+        MenuViewModel(get())
+    }
+    viewModel {
+        ChooseTeamViewModel(get(),get())
     }
 
 }
