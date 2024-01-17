@@ -22,8 +22,14 @@ class RoundResultScreenViewModel(
     val state: StateFlow<RoundResultScreenState> = _state
 
     init {
+        //todo discus
+//        _state.value = state.value.copy(
+//            roundScore = 0,
+//            roundWords = gamestate.state.value.showedWords
+//        )
+
         _state.value = state.value.copy(
-            roundScore = 0,
+            roundScore = gamestate.state.value.showedWords.count { it.guessed },
             roundWords = gamestate.state.value.showedWords
         )
     }
@@ -40,59 +46,67 @@ class RoundResultScreenViewModel(
         }
     }
 
+    private fun next(navController: NavController){
 
-    private fun next(navController: NavController) {
-
-        var indexOfTeam = -1
-
-        var teams = gamestate.state.value.teams
-
-        for (i in 0 until gamestate.state.value.teams.size) {
-            if (gamestate.state.value.teams[i].teamName == gamestate.state.value.step?.name) {
-                indexOfTeam = i
+        val newTeams = gamestate.state.value.teams.map {
+            if (it.teamName == gamestate.state.value.step!!.name){
+                TeamsScore(teamName = it.teamName, score = it.score + state.value.roundScore, image = it.image)
+            }else{
+                it
             }
         }
-
-        val changedTeams = mutableListOf<TeamsScore>()
-
-        val oldTeamScore = changedTeams[indexOfTeam].score
-
-        val newTeamScore = oldTeamScore + state.value.roundScore
-
-
-        gamestate.state.value.teams.forEachIndexed() { index, _ ->
-            if (index == indexOfTeam) {
-                changedTeams.add(
-                    TeamsScore(
-                        teams[indexOfTeam].teamName,
-                        newTeamScore,
-                        teams[indexOfTeam].image
-                    )
-                )
-            } else {
-                changedTeams.add(gamestate.state.value.teams[index])
-            }
-        }
-
 
         gamestate.state.value = gamestate.state.value.copy(
-            teams = changedTeams
+            teams = newTeams
         )
 
-        navController.navigate(NavigationTree.TAP_TO_START.name)
+        navController.navigate(NavigationTree.TEAM_RESULT_SCREEN.name)
     }
 
-    private fun changeTick(indexOfWord: Int) {
+    //todo discus
 
-        var listOfWords = state.value.roundWords
+//    private fun next(navController: NavController) {
+//
+//        var indexOfTeam = -1
+//
+//        var teams = gamestate.state.value.teams
+//
+//        for (i in 0 until gamestate.state.value.teams.size) {
+//            if (gamestate.state.value.teams[i].teamName == gamestate.state.value.step?.name) {
+//                indexOfTeam = i
+//            }
+//        }
+//
+//        val changedTeams = mutableListOf<TeamsScore>()
+//
+//        val oldTeamScore = changedTeams[indexOfTeam].score
+//
+//        val newTeamScore = oldTeamScore + state.value.roundScore
+//
+//
+//        gamestate.state.value.teams.forEachIndexed() { index, _ ->
+//            if (index == indexOfTeam) {
+//                changedTeams.add(
+//                    TeamsScore(
+//                        teams[indexOfTeam].teamName,
+//                        newTeamScore,
+//                        teams[indexOfTeam].image
+//                    )
+//                )
+//            } else {
+//                changedTeams.add(gamestate.state.value.teams[index])
+//            }
+//        }
+//
+//
+//        gamestate.state.value = gamestate.state.value.copy(
+//            teams = changedTeams
+//        )
+//
+//        navController.navigate(NavigationTree.TAP_TO_START.name)
+//    }
+//
 
-        listOfWords[indexOfWord].guessed = !listOfWords[indexOfWord].guessed
-
-        _state.value = state.value.copy(
-            roundWords = listOfWords,
-            roundScore = calculateScore(listOfWords)
-        )
-    }
 
     private fun calculateScore(listOfWords: List<ShowedWords>): Int {
         var score = 0
@@ -102,5 +116,17 @@ class RoundResultScreenViewModel(
         }
         return score
     }
+    private fun changeTick(indexOfWord: Int) {
+
+        val listOfWords = state.value.roundWords
+
+        listOfWords[indexOfWord].guessed = !listOfWords[indexOfWord].guessed
+
+        _state.value = state.value.copy(
+            roundWords = listOfWords,
+            roundScore = calculateScore(listOfWords)
+        )
+    }
+
 
 }

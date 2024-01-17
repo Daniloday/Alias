@@ -31,7 +31,7 @@ import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun TeamResultScreen(navController: NavController,vm: TeamResultScreenViewModel = koinViewModel()) {
+fun TeamResultScreen(navController: NavController, vm: TeamResultScreenViewModel = koinViewModel()) {
 
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()

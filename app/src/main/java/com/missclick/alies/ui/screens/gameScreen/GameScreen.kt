@@ -53,7 +53,7 @@ fun GameScreen(navController: NavController, vm : GameViewModel = koinViewModel(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            TeamImageCard(teamImage = R.drawable.agama)
+            viewState.imageTeam?.let { TeamImageCard(teamImage = it) }
 
             Text(
                 text = "${viewState.leftTime}",

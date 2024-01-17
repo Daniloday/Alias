@@ -32,7 +32,8 @@ class GameViewModel(
         println(gameProcessShared.state.value.stackWords)
         _state.value = state.value.copy(
             leftTime = gameSettings.state.value.time,
-            showedWord = gameProcessShared.state.value.stackWords.first()
+            showedWord = gameProcessShared.state.value.stackWords.first(),
+            imageTeam = gameProcessShared.state.value.step?.image
         )
 
         viewModelScope.launch(Dispatchers.Main) {
