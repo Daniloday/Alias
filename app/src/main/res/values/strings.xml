@@ -24,6 +24,8 @@
 
     <string name="tap_to_start_new_game">tap to start new game</string>
 
+    <string name="game_settings">Game Settings:</string>
+
     <string name="lions">Lions</string>
     <string name="capybaras">Capybaras</string>
     <string name="tigers">Tigers</string>
