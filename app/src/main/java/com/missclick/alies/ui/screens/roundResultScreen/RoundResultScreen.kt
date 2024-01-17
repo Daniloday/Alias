@@ -19,6 +19,8 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -26,17 +28,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.RoundScoreGameScreen
 import com.missclick.alies.ui.components.TeamImageCard
 import com.missclick.alies.ui.components.WordCard
+import com.missclick.alies.ui.screens.roundResultScreen.models.RoundResultScreenEvent
 import com.missclick.alies.ui.theme.AppTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun RoundResultScreen() {
+fun RoundResultScreen(navController: NavController, vm: RoundResultScreenViewModel = koinViewModel()) {
 
     val context = LocalContext.current
+    val viewState by vm.state.collectAsState()
 
     Column(
         Modifier.fillMaxSize(),
@@ -50,27 +56,11 @@ fun RoundResultScreen() {
         )
 
 
-        var list = mutableListOf(
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true"),
-            mutableListOf("Snake", "true")
-        )
+        var list = viewState.roundWords
 
 
         LazyColumn(modifier = Modifier.height(300.dp),content = {
-            itemsIndexed(list) { i, _ ->
-
-                val word = list[i][0]
+            itemsIndexed(list) { i, item ->
 
                 Row(
                     Modifier.fillMaxWidth(),
@@ -78,7 +68,7 @@ fun RoundResultScreen() {
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Text(
-                        text = word,
+                        text = item.word,
                         style = AppTheme.typography.roundWordsText,
                         color = AppTheme.colors.primary
                     )
@@ -86,11 +76,11 @@ fun RoundResultScreen() {
                     Icon(
                         painter = painterResource(id = R.drawable.check),
                         contentDescription = "check",
-                        tint = if (list[i][1] == "true") AppTheme.colors.primary else AppTheme.colors.primaryShadow,
+                        tint = if (item.guessed) AppTheme.colors.primary else AppTheme.colors.primaryShadow,
                         modifier = Modifier
                             .size(40.dp)
                             .clickable {
-
+                                vm.obtainEvent(event = RoundResultScreenEvent.ChangeTick(i))
                             }
                     )
 
@@ -108,7 +98,7 @@ fun RoundResultScreen() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "8",
+                text = viewState.roundScore.toString(),
                 style = AppTheme.typography.roundCardText,
                 color = AppTheme.colors.primary
             )
@@ -121,7 +111,7 @@ fun RoundResultScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NextButton {
-
+                vm.obtainEvent(RoundResultScreenEvent.Next(navController))
             }
         }
     }
