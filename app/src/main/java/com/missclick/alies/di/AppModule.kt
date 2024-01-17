@@ -7,6 +7,7 @@ import com.missclick.alies.ui.screens.gameSettingsScreen.GameSettingsViewModel
 import com.missclick.alies.ui.screens.menu.MenuViewModel
 import com.missclick.alies.ui.screens.prepareForGame.PrepareForGameViewModel
 import com.missclick.alies.ui.screens.tapToStart.TapToStartViewModel
+import com.missclick.alies.ui.screens.teamResultScreen.TeamResultScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -29,6 +30,9 @@ val appModule = module {
     }
     viewModel {
         TapToStartViewModel(get(), get(), get())
+    }
+    viewModel {
+        TeamResultScreenViewModel(get())
     }
 
 }

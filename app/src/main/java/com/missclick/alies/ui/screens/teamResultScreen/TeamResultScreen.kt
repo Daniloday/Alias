@@ -14,20 +14,28 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
+import com.missclick.alies.data.models.Team
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
+import com.missclick.alies.ui.screens.prepareForGame.PrepareForGameViewModel
 import com.missclick.alies.ui.theme.AppTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun TeamResultScreen() {
+fun TeamResultScreen(navController: NavController,vm: TeamResultScreenViewModel = koinViewModel()) {
 
     val context = LocalContext.current
+    val viewState by vm.state.collectAsState()
+
 
     Column(
         Modifier.fillMaxSize(),
