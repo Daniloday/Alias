@@ -11,39 +11,41 @@ import com.missclick.alies.ui.screens.menu.MenuScreen
 import com.missclick.alies.ui.screens.prepareForGame.PrepareForGame
 import com.missclick.alies.ui.screens.roundResultScreen.RoundResultScreen
 import com.missclick.alies.ui.screens.tapToStart.TapToStart
+import com.missclick.alies.ui.screens.teamResultScreen.TeamResultScreen
+import com.missclick.alies.ui.screens.win.WinScreen
 
 @Composable
-fun Navigation(){
+fun Navigation() {
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.CHOOSE_TEAM.name){
-        composable(NavigationTree.MENU.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.WIN.name) {
+        composable(NavigationTree.MENU.name) {
             MenuScreen()
         }
-        composable(NavigationTree.CHOOSE_TEAM.name){
+        composable(NavigationTree.CHOOSE_TEAM.name) {
             ChooseTeamScreen(navHostController)
         }
-        composable(NavigationTree.CHOOSE_VOCABULARY.name){
+        composable(NavigationTree.CHOOSE_VOCABULARY.name) {
             ChooseVocabularyScreen()
         }
-        composable(NavigationTree.PREPARE_FOR_GAME.name){
+        composable(NavigationTree.PREPARE_FOR_GAME.name) {
             PrepareForGame()
         }
-        composable(NavigationTree.TAP_TO_START.name){
+        composable(NavigationTree.TAP_TO_START.name) {
             TapToStart()
         }
-        composable(NavigationTree.GAME_SCREEN.name){
+        composable(NavigationTree.GAME_SCREEN.name) {
             GameScreen()
         }
-        composable(NavigationTree.ROUND_RESULT_SCREEN.name){
+        composable(NavigationTree.ROUND_RESULT_SCREEN.name) {
             RoundResultScreen()
         }
-        composable(NavigationTree.TEAM_RESULT_SCREEN.name){
-
+        composable(NavigationTree.TEAM_RESULT_SCREEN.name) {
+            TeamResultScreen()
         }
-        composable(NavigationTree.WIN.name){
-
+        composable(NavigationTree.WIN.name) {
+            WinScreen()
         }
     }
 }

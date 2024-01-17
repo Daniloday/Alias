@@ -18,16 +18,21 @@
 
     <string name="results">Results</string>
 
+    <string name="round">round</string>
+
+    <string name="congratulations">Congratulations\nto the\nwinners!!!</string>
+
+    <string name="tap_to_start_new_game">tap to start new game</string>
 
     <string name="lions">Lions</string>
     <string name="capybaras">Capybaras</string>
     <string name="tigers">Tigers</string>
     <string name="rhinos">Rhinoceroses</string>
-    <string name="rabbit">Rabbits</string>
+    <string name="rabbits">Rabbits</string>
     <string name="owls">Owls</string>
     <string name="wolves">Wolves</string>
     <string name="hedgehogs">Hedgehogs</string>
     <string name="giraffes">Giraffes</string>
-    <string name="agama">Agama</string>
+    <string name="agamas">Agamas</string>
 
 </resources>
