@@ -43,7 +43,7 @@ fun TapToStart(navController: NavController, vw : TapToStartViewModel = koinView
             color = AppTheme.colors.primary
         )
 
-        BigTeamCard(teamImage = viewState.firstStep!!.image, teamName = viewState.firstStep!!.name)
+        BigTeamCard(teamImage = viewState.step!!.image, teamName = viewState.step!!.name)
 
         Card(
             modifier = Modifier.size(300.dp),
