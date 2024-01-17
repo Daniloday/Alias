@@ -1,23 +1,15 @@
 package com.missclick.alies.ui.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -29,16 +21,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.missclick.alies.R
+import com.missclick.alies.ui.screens.chooseVocabulary.models.Vocabulary
 import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
-fun VocabularyCard(vocabulary: String){
-    val context = LocalContext.current
+fun VocabularyCard(vocabulary: Vocabulary, checkboxClick : () -> Unit){
+
     var myState by remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier
             .size(280.dp, 80.dp)
@@ -55,8 +46,8 @@ fun VocabularyCard(vocabulary: String){
                 modifier = Modifier.padding(start = 24.dp).size(32.dp).align(Alignment.CenterStart).clip(shape = RoundedCornerShape(10.dp)).border(4.dp, AppTheme.colors.primary,shape = RoundedCornerShape(10.dp)),
             ) {
                 Checkbox(
-                    checked = myState,
-                    onCheckedChange = { myState = it },
+                    checked = vocabulary.isSelected,
+                    onCheckedChange = { checkboxClick.invoke()},
                     colors = CheckboxDefaults.colors(
                         uncheckedColor = Color.Transparent,
                         checkedColor = Color.Transparent,
@@ -64,7 +55,7 @@ fun VocabularyCard(vocabulary: String){
                     )
                 )
             }
-            Text(text = vocabulary,modifier = Modifier.align(Alignment.Center), style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
+            Text(text = vocabulary.name, modifier = Modifier.align(Alignment.Center), style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
         }
     }
 }

@@ -15,4 +15,5 @@ val dataModule = module {
     single { LocalDictionaries(get(), get()) }
     single { Repository(get(), get()) }
     single { GameSettings() }
+
 }

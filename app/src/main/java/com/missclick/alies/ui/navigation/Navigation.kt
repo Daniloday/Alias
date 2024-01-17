@@ -17,15 +17,15 @@ fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.CHOOSE_TEAM.name){
+    NavHost(navController = navHostController, startDestination = NavigationTree.MENU.name){
         composable(NavigationTree.MENU.name){
-            MenuScreen()
+            MenuScreen(navHostController)
         }
         composable(NavigationTree.CHOOSE_TEAM.name){
             ChooseTeamScreen(navHostController)
         }
         composable(NavigationTree.CHOOSE_VOCABULARY.name){
-            ChooseVocabularyScreen()
+            ChooseVocabularyScreen(navHostController)
         }
         composable(NavigationTree.PREPARE_FOR_GAME.name){
             PrepareForGame()

@@ -5,7 +5,6 @@ import com.missclick.alies.common.EventHandler
 import com.missclick.alies.data.models.Team
 import com.missclick.alies.data.repository.Repository
 import com.missclick.alies.data.sharedStates.GameSettings
-import com.missclick.alies.data.sharedStates.GameSettingsState
 import com.missclick.alies.ui.screens.chooseTeam.models.ChooseTeamEvent
 import com.missclick.alies.ui.screens.chooseTeam.models.ChooseTeamState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,17 +42,22 @@ class ChooseTeamViewModel(
     }
 
     private fun teamAllClick(item : Team){
+        val new = state.value.teamList.toMutableList()
+        new.remove(item)
         _state.value = state.value.copy(
-            teamList = state.value.teamList.dropWhile { it == item },
+            teamList = new,
             choseTeamList = state.value.choseTeamList.plus(item)
         )
     }
 
     private fun teamChoseClick(item : Team){
+        val new = state.value.choseTeamList.toMutableList()
+        new.remove(item)
         _state.value = state.value.copy(
             teamList = state.value.teamList.plus(item),
-            choseTeamList = state.value.choseTeamList.dropWhile { it == item }
+            choseTeamList = new
         )
+
     }
 
 

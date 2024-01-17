@@ -4,10 +4,8 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.missclick.alies.R
-import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
-import java.io.InputStreamReader
 
 class LocalDictionaries(private val context: Context, private val gson: Gson) : ILocalDictionaries {
     override fun getNames(): List<String> {
@@ -36,8 +34,7 @@ class LocalDictionaries(private val context: Context, private val gson: Gson) : 
     }
 
     private fun loadJSONFromAsset(): String? {
-        var json: String? = null
-        json = try {
+        val json: String? = try {
             val file: InputStream = context.resources.openRawResource(R.raw.en)
             val size = file.available()
             val buffer = ByteArray(size)

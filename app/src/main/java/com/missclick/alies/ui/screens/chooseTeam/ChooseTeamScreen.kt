@@ -1,15 +1,13 @@
 package com.missclick.alies.ui.screens.chooseTeam
 
-import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -62,14 +60,34 @@ fun ChooseTeamScreen(navController: NavController, vm : ChooseTeamViewModel = ko
                 .fillMaxWidth()
                 .height(1.dp), color = AppTheme.colors.primary)
 
-            LazyColumn(content = {
-                itemsIndexed(viewState.teamList){
-                        _, item ->
-                    BigTeamCard(teamImage = item.image, teamName = item.name){
-                        vm.obtainEvent(ChooseTeamEvent.TeamAllClick(item))
-                    }
+//            LazyColumn(content = {
+//                itemsIndexed(viewState.teamList){
+//                        _, item ->
+//                    BigTeamCard(teamImage = item.image, teamName = item.name){
+//                        vm.obtainEvent(ChooseTeamEvent.TeamAllClick(item))
+//                    }
+//
+//                }
+//            })
 
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), content = {
+
+                repeat((viewState.teamList.size - 1) / 2 + 1){
+                    item {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            BigTeamCard(teamImage = viewState.teamList[it * 2].image, teamName = viewState.teamList[it * 2].name){
+                                vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2]))
+                            }
+                            if (it * 2 + 1 != viewState.teamList.size){
+                                BigTeamCard(teamImage = viewState.teamList[it * 2 + 1].image, teamName = viewState.teamList[it * 2 + 1].name){
+                                    vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2 + 1]))
+                                }
+                            }
+
+                        }
+                    }
                 }
+
             })
 
         }
