@@ -1,39 +1,41 @@
-package com.missclick.alies.ui.screens.gameSettings
+package com.missclick.alies.ui.screens.gameSettingsScreen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
-import com.missclick.alies.data.sharedStates.GameSettings
 import com.missclick.alies.ui.components.NextButton
-import com.missclick.alies.ui.components.VocabularyCard
+import com.missclick.alies.ui.navigation.NavigationTree
+import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamViewModel
+import com.missclick.alies.ui.screens.chooseVocabulary.models.ChooseVocabularyEvent
+import com.missclick.alies.ui.screens.gameSettingsScreen.models.GameSettingsEvent
 import com.missclick.alies.ui.theme.AppTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun GameSettingsScreen() {
+fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel = koinViewModel()) {
 
     val context = LocalContext.current
-
+    val viewState by vm.state.collectAsState()
 
     val teamList = mutableListOf(
         "Lions",
@@ -83,12 +85,14 @@ fun GameSettingsScreen() {
                     contentDescription = "arrow",
                     modifier = Modifier
                         .size(30.dp)
-                        .scale(scaleX = -1f, scaleY = 1f),
+                        .scale(scaleX = -1f, scaleY = 1f).clickable {
+                                                                  vm.obtainEvent(GameSettingsEvent.ChangeTime(false))
+                        },
                     tint = AppTheme.colors.primary
                 )
 
                 Text(
-                    text = "30",
+                    text = "${viewState.timeGameSettings}",
                     style = AppTheme.typography.headerTextThin,
                     color = AppTheme.colors.primary
                 )
@@ -96,7 +100,9 @@ fun GameSettingsScreen() {
                 Icon(
                     painter = painterResource(id = R.drawable.arrow_right),
                     contentDescription = "arrow",
-                    modifier = Modifier.size(30.dp),
+                    modifier = Modifier.size(30.dp).clickable {
+                        vm.obtainEvent(GameSettingsEvent.ChangeTime(true))
+                    },
                     tint = AppTheme.colors.primary
                 )
             }
@@ -121,12 +127,14 @@ fun GameSettingsScreen() {
                     contentDescription = "arrow",
                     modifier = Modifier
                         .size(30.dp)
-                        .scale(scaleX = -1f, scaleY = 1f),
+                        .scale(scaleX = -1f, scaleY = 1f).clickable {
+                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
+                        },
                     tint = AppTheme.colors.primary
                 )
 
                 Text(
-                    text = "100",
+                    text = "${viewState.goalGameSettings}",
                     style = AppTheme.typography.headerTextThin,
                     color = AppTheme.colors.primary
                 )
@@ -134,7 +142,9 @@ fun GameSettingsScreen() {
                 Icon(
                     painter = painterResource(id = R.drawable.arrow_right),
                     contentDescription = "arrow",
-                    modifier = Modifier.size(30.dp),
+                    modifier = Modifier.size(30.dp).clickable {
+                        vm.obtainEvent(GameSettingsEvent.ChangeGoal(true))
+                    },
                     tint = AppTheme.colors.primary
                 )
             }
@@ -147,7 +157,10 @@ fun GameSettingsScreen() {
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            NextButton() {}
+            NextButton() {
+                vm.obtainEvent(GameSettingsEvent.Next)
+                navController.navigate(NavigationTree.PREPARE_FOR_GAME.name)
+            }
 
             Spacer(modifier = Modifier.size(24.dp))
 

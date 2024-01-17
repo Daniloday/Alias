@@ -7,7 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamScreen
 import com.missclick.alies.ui.screens.chooseVocabulary.ChooseVocabularyScreen
 import com.missclick.alies.ui.screens.gameScreen.GameScreen
-import com.missclick.alies.ui.screens.gameSettings.GameSettingsScreen
+import com.missclick.alies.ui.screens.gameSettingsScreen.GameSettingsScreen
 import com.missclick.alies.ui.screens.menu.MenuScreen
 import com.missclick.alies.ui.screens.prepareForGame.PrepareForGame
 import com.missclick.alies.ui.screens.roundResultScreen.RoundResultScreen
@@ -49,7 +49,7 @@ fun Navigation(){
             WinScreen()
         }
         composable(NavigationTree.GAME_SETTINGS.name){
-            GameSettingsScreen()
+            GameSettingsScreen(navHostController)
         }
     }
 }
