@@ -26,7 +26,7 @@ import com.missclick.alies.R
 import com.missclick.alies.data.models.Team
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
-import com.missclick.alies.ui.screens.prepareForGame.PrepareForGameViewModel
+import com.missclick.alies.ui.screens.teamResultScreen.models.TeamResultScoreEvent
 import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -53,24 +53,8 @@ fun TeamResultScreen(navController: NavController,vm: TeamResultScreenViewModel 
             color = AppTheme.colors.primary
         )
 
-        var list = mutableListOf(
-            mutableListOf("Lions", "50"),
-            mutableListOf("Lions", "20"),
-            mutableListOf("Lions", "30"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40"),
-            mutableListOf("Lions", "40")
-        )
-
-
         LazyColumn(modifier = Modifier.height(300.dp),content = {
-            itemsIndexed(list) { i, _ ->
-
-                val word = list[i][1]
+            itemsIndexed(viewState.teams) { i, item ->
 
                 Row(
                     Modifier.fillMaxWidth(),
@@ -78,10 +62,10 @@ fun TeamResultScreen(navController: NavController,vm: TeamResultScreenViewModel 
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
 
-                    SmallTeamCard(teamImage = R.drawable.agama, teamName = list[i][0])
+                    SmallTeamCard(teamImage = item.image, teamName = item.teamName)
 
                     Text(
-                        text = word,
+                        text = (item.score).toString(),
                         style = AppTheme.typography.roundWordsText,
                         color = AppTheme.colors.primary
                     )
@@ -96,7 +80,7 @@ fun TeamResultScreen(navController: NavController,vm: TeamResultScreenViewModel 
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NextButton {
-
+                vm.obtainEvent(event = TeamResultScoreEvent.Next(navController = navController))
             }
         }
     }
