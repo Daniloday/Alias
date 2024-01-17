@@ -34,7 +34,7 @@ fun Navigation(){
             PrepareForGame()
         }
         composable(NavigationTree.TAP_TO_START.name){
-            TapToStart()
+            TapToStart(navHostController)
         }
         composable(NavigationTree.GAME_SCREEN.name){
             GameScreen()
