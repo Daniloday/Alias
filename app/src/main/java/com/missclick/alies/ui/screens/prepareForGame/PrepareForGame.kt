@@ -23,21 +23,27 @@ import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.lazy.staggeredgrid.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
+import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamViewModel
 import com.missclick.alies.ui.screens.menu.MenuViewModel
+import com.missclick.alies.ui.screens.prepareForGame.models.PrepareForGameEvent
 import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun PrepareForGame(vm: MenuViewModel = koinViewModel()) {
+fun PrepareForGame(navController: NavController, vm: PrepareForGameViewModel = koinViewModel()) {
 
     val context = LocalContext.current
+    val viewState by vm.state.collectAsState()
 
     Column(
         Modifier.fillMaxSize(),
@@ -46,12 +52,12 @@ fun PrepareForGame(vm: MenuViewModel = koinViewModel()) {
     ) {
 
         Text(
-            text = "${context.getString(R.string.time)}: 30 ${context.getString(R.string.seconds)}",
+            text = "${context.getString(R.string.time)}: ${viewState.selectedTime} ${context.getString(R.string.seconds)}",
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
         Text(
-            text = "${context.getString(R.string.goals)}: 100 ${context.getString(R.string.points)}",
+            text = "${context.getString(R.string.goals)}: ${viewState.selectedGoal} ${context.getString(R.string.points)}",
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
@@ -65,22 +71,12 @@ fun PrepareForGame(vm: MenuViewModel = koinViewModel()) {
             
             Spacer(modifier = Modifier.size(16.dp))
 
-            val teamList = mutableListOf(
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions",
-                "Lions",
-
-                )
+            val selectedTeamList = viewState.selectedTeams
 
             Row {
                 LazyColumn(content = {
-                    itemsIndexed(teamList) { index, item ->
-                        SmallTeamCard(teamImage = R.drawable.agama, teamName = "agama")
+                    itemsIndexed(selectedTeamList) { _, item ->
+                        SmallTeamCard(teamImage = item.image, teamName = item.name)
                     }
                 })
             }
@@ -94,6 +90,7 @@ fun PrepareForGame(vm: MenuViewModel = koinViewModel()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NextButton {
+                vm.obtainEvent(event = PrepareForGameEvent.Next(navController = navController))
 
             }
         }
