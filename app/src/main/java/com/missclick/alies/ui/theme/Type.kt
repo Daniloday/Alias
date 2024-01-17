@@ -27,7 +27,7 @@ val typography = Typography(
         fontWeight = FontWeight.Bold
     ),
     headerTextThin = TextStyle(
-        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontFamily = FontFamily(Font(R.font.playregular)),
         fontSize = 36.sp,
         fontWeight = FontWeight.Normal
     ),
