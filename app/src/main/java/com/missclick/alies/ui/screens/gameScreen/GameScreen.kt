@@ -12,25 +12,35 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.BigTeamCard
 import com.missclick.alies.ui.components.RoundScoreGameScreen
 import com.missclick.alies.ui.components.TeamImageCard
 import com.missclick.alies.ui.components.WordCard
+import com.missclick.alies.ui.navigation.NavigationTree
+import com.missclick.alies.ui.screens.gameScreen.models.GameEvent
 import com.missclick.alies.ui.theme.AppTheme
+import org.koin.androidx.compose.koinViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun GameScreen() {
+fun GameScreen(navController: NavController, vm : GameViewModel = koinViewModel()) {
 
     val context = LocalContext.current
+    val viewState by vm.state.collectAsState()
 
     Column(
         Modifier.fillMaxSize(),
@@ -46,15 +56,15 @@ fun GameScreen() {
             TeamImageCard(teamImage = R.drawable.agama)
 
             Text(
-                text = 25.toString(),
+                text = "${viewState.leftTime}",
                 style = AppTheme.typography.headerTextThin,
                 color = AppTheme.colors.primary
             )
 
-            RoundScoreGameScreen(scoreRound = 8)
+            RoundScoreGameScreen(scoreRound = viewState.score)
         }
 
-        WordCard(word = "Snake")
+        WordCard(word = viewState.showedWord)
 
 
 
@@ -64,9 +74,12 @@ fun GameScreen() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
-                modifier = Modifier.size(100.dp).alpha(0.5f),
+                modifier = Modifier
+                    .size(100.dp)
+                    .alpha(0.5f),
                 shape = CircleShape,
-                colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
+                colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground),
+                onClick = {vm.obtainEvent(GameEvent.Skip(navController))}
             ) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
@@ -79,7 +92,8 @@ fun GameScreen() {
             Card(
                 modifier = Modifier.size(200.dp),
                 shape = CircleShape,
-                colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
+                colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground),
+                onClick = {vm.obtainEvent(GameEvent.Guessed(navController))}
             ) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(

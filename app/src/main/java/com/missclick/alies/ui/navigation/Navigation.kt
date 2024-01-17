@@ -37,13 +37,13 @@ fun Navigation(){
             TapToStart(navHostController)
         }
         composable(NavigationTree.GAME_SCREEN.name){
-            GameScreen()
+            GameScreen(navHostController)
         }
         composable(NavigationTree.ROUND_RESULT_SCREEN.name){
             RoundResultScreen()
         }
         composable(NavigationTree.TEAM_RESULT_SCREEN.name) {
-            TeamResultScreen()
+            TeamResultScreen(navHostController)
         }
         composable(NavigationTree.WIN.name) {
             WinScreen()

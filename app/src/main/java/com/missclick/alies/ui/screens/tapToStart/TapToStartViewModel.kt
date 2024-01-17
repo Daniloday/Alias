@@ -27,20 +27,15 @@ class TapToStartViewModel(
 
     init {
 
-        _state.value = state.value.copy(
-            step = gameSettings.state.value.chooseTeams.first()
-        )
-
-
-//        if (gameProcessShared.state.value.step == null){
-//            _state.value = state.value.copy(
-//                step = gameSettings.state.value.chooseTeams.first()
-//            )
-//        }else{
-//            _state.value = state.value.copy(
-////                step = gameProcessShared.state.value.step
-//            )
-//        }
+        if (gameProcessShared.state.value.step == null){
+            _state.value = state.value.copy(
+                step = gameSettings.state.value.chooseTeams.first()
+            )
+        }else{
+            _state.value = state.value.copy(
+                step = gameProcessShared.state.value.step
+            )
+        }
 
     }
 
@@ -51,19 +46,23 @@ class TapToStartViewModel(
     }
 
     private fun start(navController: NavController) {
-        val newTeams = mutableListOf<TeamsScore>()
-        val teamNames = mutableListOf<String>()
-        gameSettings.state.value.chooseTeams.forEach {
-            newTeams.add(TeamsScore(teamName = it.name, score = 0, image = it.image))
-            teamNames.add(it.name)
-        }
-        gameProcessShared.state.value = gameProcessShared.state.value.copy(
-            teams = newTeams,
-            stackWords = repository.getWordsByDictionariesName(teamNames),
-            showedWords = listOf(),
-            step = Team(name = newTeams.first().teamName, image = newTeams.first().image)
 
-        )
+        if (gameProcessShared.state.value.step == null){
+            val newTeams = mutableListOf<TeamsScore>()
+            val teamNames = mutableListOf<String>()
+            gameSettings.state.value.chooseTeams.forEach {
+                newTeams.add(TeamsScore(teamName = it.name, score = 0, image = it.image))
+                teamNames.add(it.name)
+            }
+            gameProcessShared.state.value = gameProcessShared.state.value.copy(
+                teams = newTeams,
+                stackWords = repository.getWordsByDictionariesName(gameSettings.state.value.chooseDictionaries),
+                showedWords = listOf(),
+                step = Team(name = newTeams.first().teamName, image = newTeams.first().image)
+
+            )
+        }
+
         navController.navigate(NavigationTree.GAME_SCREEN.name)
     }
 

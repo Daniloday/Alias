@@ -3,6 +3,7 @@ package com.missclick.alies.di
 
 import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamViewModel
 import com.missclick.alies.ui.screens.chooseVocabulary.ChooseVocabularyViewModel
+import com.missclick.alies.ui.screens.gameScreen.GameViewModel
 import com.missclick.alies.ui.screens.gameSettingsScreen.GameSettingsViewModel
 import com.missclick.alies.ui.screens.menu.MenuViewModel
 import com.missclick.alies.ui.screens.prepareForGame.PrepareForGameViewModel
@@ -33,6 +34,9 @@ val appModule = module {
     }
     viewModel {
         TeamResultScreenViewModel(get())
+    }
+    viewModel{
+        GameViewModel(get(),get())
     }
 
 }
