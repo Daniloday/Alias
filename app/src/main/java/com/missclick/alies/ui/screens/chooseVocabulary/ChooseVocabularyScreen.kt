@@ -77,7 +77,7 @@ fun ChooseVocabularyScreen(
         ) {
             NextButton {
                 vm.obtainEvent(ChooseVocabularyEvent.Next)
-                navController.navigate(NavigationTree.PREPARE_FOR_GAME.name)
+                navController.navigate(NavigationTree.TAP_TO_START.name)
             }
         }
 

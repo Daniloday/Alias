@@ -6,6 +6,7 @@ import com.missclick.alies.data.repository.Repository
 import com.missclick.alies.data.repository.dictionary.LocalDictionaries
 import com.missclick.alies.data.repository.team.LocalTeams
 import com.missclick.alies.data.sharedStates.GameSettings
+import com.missclick.alies.data.sharedStates.gameProcess.GameProcessShared
 import org.koin.dsl.module
 
 val dataModule = module {
@@ -15,5 +16,6 @@ val dataModule = module {
     single { LocalDictionaries(get(), get()) }
     single { Repository(get(), get()) }
     single { GameSettings() }
+    single { GameProcessShared() }
 
 }
