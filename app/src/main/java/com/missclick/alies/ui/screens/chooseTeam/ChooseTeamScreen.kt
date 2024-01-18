@@ -40,8 +40,6 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
 
-
-
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
