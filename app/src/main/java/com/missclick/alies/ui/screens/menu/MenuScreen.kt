@@ -10,10 +10,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -27,24 +30,35 @@ fun MenuScreen(navController: NavController) {
 
         Row(
             modifier = Modifier
+                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
                 .fillMaxWidth()
                 .align(Alignment.TopCenter),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
 
             Image(
                 painter = painterResource(id = R.drawable.info_button),
                 contentDescription = null, modifier = Modifier
-                    .size(56.dp)
-                    .padding(start = 24.dp, top = 24.dp)
+                    .size(48.dp)
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.ukraine_lang),
-                contentDescription = null, modifier = Modifier
-                    .size(56.dp)
-                    .padding(top = 24.dp, end = 24.dp)
-            )
+            Card(
+                modifier = Modifier
+                    .size(60.dp, 40.dp), shape = RoundedCornerShape(0)
+            ) {
+
+                Box(Modifier.fillMaxSize()) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ukraine_lang),
+                        contentDescription = null, modifier = Modifier
+                            .size(60.dp, 40.dp), contentScale = ContentScale.FillBounds
+                    )
+                }
+
+            }
+
+
         }
 
         Image(painter = painterResource(id = R.drawable.play_menu), contentDescription = null,
