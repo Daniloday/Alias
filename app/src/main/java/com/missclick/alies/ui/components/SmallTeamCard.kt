@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import com.missclick.alies.ui.theme.AppTheme
 
 
+
 @Composable
 fun SmallTeamCard(teamImage: Int, teamName: String, click: (() -> Unit)? = null) {
 
