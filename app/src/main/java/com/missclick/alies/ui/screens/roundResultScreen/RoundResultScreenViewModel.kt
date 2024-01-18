@@ -43,6 +43,7 @@ class RoundResultScreenViewModel(
 
     private fun next(navController: NavController){
 
+
         val newTeams = gameProcess.state.value.teams.map {
             if (it.teamName == gameProcess.state.value.step!!.name){
                 TeamsScore(teamName = it.teamName, score = it.score + state.value.roundScore, image = it.image)

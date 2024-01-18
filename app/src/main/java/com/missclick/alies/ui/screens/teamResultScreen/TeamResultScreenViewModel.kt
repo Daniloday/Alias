@@ -23,7 +23,7 @@ class TeamResultScreenViewModel(
 
     init {
         _state.value = state.value.copy(
-            teams = gameProcessShared.state.value.teams) //todo sort by score
+            teams = gameProcessShared.state.value.teams) //todo sort by score mb
     }
 
     override fun obtainEvent(event: TeamResultScoreEvent) {
@@ -45,28 +45,7 @@ class TeamResultScreenViewModel(
         navController.navigate(NavigationTree.TAP_TO_START.name)
     }
 
-    //todo discuss
-//    private fun next2(navController: NavController){
-//        val list = mutableListOf<String>()
-//        for(i in gameProcessShared.state.value.teams){
-//            list.add(i.teamName)
-//        }
-//
-//        for(i in list.indices){
-//            if(list[i] == gameProcessShared.state.value.step?.name){
-//                val nextImage = gameProcessShared.state.value.teams[i+1].image //todo it can be last element, you need to start from 0 in this way
-//                val nextTeamName = gameProcessShared.state.value.teams[i+1].teamName
-//                gameProcessShared.state.value = gameProcessShared.state.value.copy(
-//                    step = Team(nextTeamName,nextImage),
-//                    showedWords = listOf(), //todo miss
-//                )
-//
-//                break
-//            }
-//        }
-//
-//        navController.navigate(NavigationTree.TAP_TO_START.name)
-//    }
+
 
 
 }
