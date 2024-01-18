@@ -7,5 +7,4 @@ data class GameSettingsState(
     val chooseDictionaries : List<String> = listOf(),
     val time : Int = 30,
     val goal : Int = 30,
-
 )

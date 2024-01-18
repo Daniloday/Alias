@@ -4,10 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.missclick.alies.common.EventHandler
 import com.missclick.alies.data.models.Team
-import com.missclick.alies.data.sharedStates.GameSettings
 import com.missclick.alies.data.sharedStates.gameProcess.GameProcessShared
 import com.missclick.alies.ui.navigation.NavigationTree
-import com.missclick.alies.ui.screens.prepareForGame.models.PrepareForGameEvent
 import com.missclick.alies.ui.screens.teamResultScreen.models.TeamResultScoreEvent
 import com.missclick.alies.ui.screens.teamResultScreen.models.TeamResultScoreState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,22 +15,25 @@ class TeamResultScreenViewModel(
     private val gameProcessShared: GameProcessShared
 ) : ViewModel(), EventHandler<TeamResultScoreEvent> {
 
-    private val _state : MutableStateFlow<TeamResultScoreState>
-            = MutableStateFlow(TeamResultScoreState())
-    val state : StateFlow<TeamResultScoreState> = _state
+    private val _state: MutableStateFlow<TeamResultScoreState> =
+        MutableStateFlow(TeamResultScoreState())
+    val state: StateFlow<TeamResultScoreState> = _state
 
     init {
         _state.value = state.value.copy(
-            teams = gameProcessShared.state.value.teams) //todo sort by score mb
+            teams = gameProcessShared.state.value.teams
+        )
     }
 
     override fun obtainEvent(event: TeamResultScoreEvent) {
-        when(event){
-            is TeamResultScoreEvent.Next -> {next(event.navController)}
+        when (event) {
+            is TeamResultScoreEvent.Next -> {
+                next(event.navController)
+            }
         }
     }
 
-    private fun next(navController: NavController){
+    private fun next(navController: NavController) {
         val currentStepIndex = gameProcessShared.state.value.teams.indexOfFirst {
             it.teamName == gameProcessShared.state.value.step?.name
         }
@@ -44,8 +45,6 @@ class TeamResultScreenViewModel(
         )
         navController.navigate(NavigationTree.TAP_TO_START.name)
     }
-
-
 
 
 }

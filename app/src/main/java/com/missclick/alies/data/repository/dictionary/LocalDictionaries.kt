@@ -11,11 +11,7 @@ import java.util.Random
 class LocalDictionaries(private val context: Context, private val gson: Gson) : ILocalDictionaries {
     override fun getNames(): List<String> {
         val map = convertJsonToMap()
-        val names = mutableListOf<String>()
-        map.keys.forEach {
-            names.add(it)
-        }
-        return names
+        return map.map { it.key }
     }
 
     override fun getWordsByNames(names: List<String>): List<String> {

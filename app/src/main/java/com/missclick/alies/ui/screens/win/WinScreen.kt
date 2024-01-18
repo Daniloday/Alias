@@ -17,7 +17,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.BigTeamCard
-import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.SmallTeamCard
 import com.missclick.alies.ui.theme.AppTheme
 
@@ -32,7 +31,7 @@ fun WinScreen() {
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
-            text = "${context.getString(R.string.results)}",
+            text = context.getString(R.string.results),
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
@@ -42,7 +41,7 @@ fun WinScreen() {
             color = AppTheme.colors.primary
         )
 
-        var list = mutableListOf(
+        val list = mutableListOf(
             mutableListOf("Lions", "50"),
             mutableListOf("Lions", "20"),
             mutableListOf("Lions", "30"),
@@ -82,7 +81,7 @@ fun WinScreen() {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
             Text(
-                text = "${context.getString(R.string.congratulations)}",
+                text = context.getString(R.string.congratulations),
                 style = AppTheme.typography.roundWordsText,
                 color = AppTheme.colors.primary,
                 textAlign = TextAlign.Center
@@ -93,7 +92,7 @@ fun WinScreen() {
         }
 
         Text(
-            text = "${context.getString(R.string.tap_to_start_new_game)}",
+            text = context.getString(R.string.tap_to_start_new_game),
             style = AppTheme.typography.teamCardText,
             color = AppTheme.colors.primary,
             textAlign = TextAlign.Center

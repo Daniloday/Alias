@@ -11,7 +11,6 @@ import com.missclick.alies.data.sharedStates.gameProcess.ShowedWords
 import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.gameScreen.models.GameEvent
 import com.missclick.alies.ui.screens.gameScreen.models.GameState
-import com.missclick.alies.ui.screens.tapToStart.models.TapToStartState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -89,7 +88,8 @@ class GameViewModel(
     }
 
     private fun addNewWordsToStack(){
-        val words = repository.getWordsByDictionariesName(gameSettings.state.value.chooseDictionaries).toMutableList()
+        val words = repository.getWordsByDictionariesName(gameSettings.state.value
+            .chooseDictionaries).toMutableList()
         words.add(0, gameProcessShared.state.value.stackWords.first())
         gameProcessShared.state.value = gameProcessShared.state.value.copy(
             stackWords = words

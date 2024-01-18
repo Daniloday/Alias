@@ -16,6 +16,7 @@ import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
 fun WordCard(word: String) {
+
     Card(
         modifier = Modifier.size(240.dp),
         border = BorderStroke(4.dp, AppTheme.colors.accent),

@@ -12,11 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.missclick.alies.R
 import com.missclick.alies.ui.theme.AppTheme
 
 @Composable
-fun TeamImageCard(teamImage: Int){
+fun TeamImageCard(teamImage: Int) {
 
     Card(
         modifier = Modifier.size(100.dp),

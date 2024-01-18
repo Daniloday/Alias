@@ -47,7 +47,7 @@ class ChooseVocabularyViewModel(
         }
     }
 
-    private fun next(navController : NavController, context: Context) {
+    private fun next(navController: NavController, context: Context) {
 
         val vocabularySelected = state.value.vocabularyList.filter {
             it.isSelected
@@ -55,9 +55,13 @@ class ChooseVocabularyViewModel(
             it.name
         }
 
-        if (vocabularySelected.isEmpty()){
-            Toast.makeText(context, context.getString(R.string.no_chose_vocabulary), Toast.LENGTH_SHORT).show()
-        }else{
+        if (vocabularySelected.isEmpty()) {
+            Toast.makeText(
+                context,
+                context.getString(R.string.no_chose_vocabulary),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
             gameSettings.state.value = gameSettings.state.value.copy(
                 chooseDictionaries = vocabularySelected
             )

@@ -22,9 +22,10 @@ class RoundResultScreenViewModel(
     val state: StateFlow<RoundResultScreenState> = _state
 
     init {
-
+        val score = gameProcess.state.value.showedWords.count { it.guessed } - gameProcess.state
+            .value.showedWords.count { !it.guessed }
         _state.value = state.value.copy(
-            roundScore = gameProcess.state.value.showedWords.count { it.guessed },
+            roundScore = if (score > 0) score else 0,
             roundWords = gameProcess.state.value.showedWords
         )
     }
@@ -41,13 +42,16 @@ class RoundResultScreenViewModel(
         }
     }
 
-    private fun next(navController: NavController){
+    private fun next(navController: NavController) {
 
 
         val newTeams = gameProcess.state.value.teams.map {
-            if (it.teamName == gameProcess.state.value.step!!.name){
-                TeamsScore(teamName = it.teamName, score = it.score + state.value.roundScore, image = it.image)
-            }else{
+            if (it.teamName == gameProcess.state.value.step!!.name) {
+                TeamsScore(
+                    teamName = it.teamName, score = it.score
+                            + state.value.roundScore, image = it.image
+                )
+            } else {
                 it
             }
         }
@@ -61,13 +65,19 @@ class RoundResultScreenViewModel(
 
     private fun changeTick(indexOfWord: Int) {
 
-        val listOfWords = state.value.roundWords
+        val listOfWordsNew = state.value.roundWords.mapIndexed { index, showedWords ->
+            if (index == indexOfWord) ShowedWords(
+                word = showedWords.word,
+                guessed = !showedWords.guessed
+            )
+            else showedWords
+        }
 
-        listOfWords[indexOfWord].guessed = !listOfWords[indexOfWord].guessed
+        val score = listOfWordsNew.count { it.guessed } - listOfWordsNew.count { !it.guessed }
 
         _state.value = state.value.copy(
-            roundWords = listOfWords,
-            roundScore = gameProcess.state.value.showedWords.count { it.guessed },
+            roundWords = listOfWordsNew,
+            roundScore = if (score > 0) score else 0,
         )
     }
 

@@ -8,28 +8,31 @@ import com.missclick.alies.ui.screens.gameSettingsScreen.models.GameSettingsTeam
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class GameSettingsViewModel (
+class GameSettingsViewModel(
     private val gameSettings: GameSettings
-    ) : ViewModel(), EventHandler<GameSettingsEvent> {
+) : ViewModel(), EventHandler<GameSettingsEvent> {
 
-    private val _state : MutableStateFlow<GameSettingsTeamState> = MutableStateFlow(GameSettingsTeamState())
-    val state : StateFlow<GameSettingsTeamState> = _state
+    private val _state: MutableStateFlow<GameSettingsTeamState> =
+        MutableStateFlow(GameSettingsTeamState())
+    val state: StateFlow<GameSettingsTeamState> = _state
 
     override fun obtainEvent(event: GameSettingsEvent) {
-        when(event){
+        when (event) {
             is GameSettingsEvent.Next -> {
                 next()
             }
-            is GameSettingsEvent.ChangeTime ->{
+
+            is GameSettingsEvent.ChangeTime -> {
                 changeTime(event.up)
             }
-            is GameSettingsEvent.ChangeGoal ->{
+
+            is GameSettingsEvent.ChangeGoal -> {
                 changeGoal(event.up)
             }
         }
     }
 
-    private fun next(){
+    private fun next() {
         gameSettings.state.value = gameSettings.state.value.copy(
             time = state.value.timeGameSettings,
             goal = state.value.goalGameSettings
@@ -37,15 +40,16 @@ class GameSettingsViewModel (
     }
 
     private fun changeTime(up: Boolean) {
-        when(up){
-            true->{
-                if(state.value.timeGameSettings<120)
-                _state.value = state.value.copy(
-                    timeGameSettings = state.value.timeGameSettings + 10
-                )
+        when (up) {
+            true -> {
+                if (state.value.timeGameSettings < 120)
+                    _state.value = state.value.copy(
+                        timeGameSettings = state.value.timeGameSettings + 10
+                    )
             }
-            false->{
-                if(state.value.timeGameSettings>30){
+
+            false -> {
+                if (state.value.timeGameSettings > 30) {
                     _state.value = state.value.copy(
                         timeGameSettings = state.value.timeGameSettings - 10
                     )
@@ -55,15 +59,16 @@ class GameSettingsViewModel (
     }
 
     private fun changeGoal(up: Boolean) {
-        when(up){
-            true->{
-                if(state.value.goalGameSettings<240)
-                _state.value = state.value.copy(
-                    goalGameSettings = state.value.goalGameSettings + 10
-                )
+        when (up) {
+            true -> {
+                if (state.value.goalGameSettings < 240)
+                    _state.value = state.value.copy(
+                        goalGameSettings = state.value.goalGameSettings + 10
+                    )
             }
-            false->{
-                if(state.value.goalGameSettings>30){
+
+            false -> {
+                if (state.value.goalGameSettings > 30) {
                     _state.value = state.value.copy(
                         goalGameSettings = state.value.goalGameSettings - 10
                     )

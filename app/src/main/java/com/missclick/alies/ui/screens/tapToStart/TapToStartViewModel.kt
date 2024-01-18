@@ -7,7 +7,6 @@ import com.missclick.alies.data.models.Team
 import com.missclick.alies.data.repository.Repository
 import com.missclick.alies.data.sharedStates.GameSettings
 import com.missclick.alies.data.sharedStates.gameProcess.GameProcessShared
-import com.missclick.alies.data.sharedStates.gameProcess.GameProcessState
 import com.missclick.alies.data.sharedStates.gameProcess.TeamsScore
 import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.tapToStart.models.TapToStartEvent
@@ -21,17 +20,16 @@ class TapToStartViewModel(
     private val gameProcessShared: GameProcessShared
 ) : ViewModel(), EventHandler<TapToStartEvent> {
 
-    private val _state : MutableStateFlow<TapToStartState>
-            = MutableStateFlow(TapToStartState())
-    val state : StateFlow<TapToStartState> = _state
+    private val _state: MutableStateFlow<TapToStartState> = MutableStateFlow(TapToStartState())
+    val state: StateFlow<TapToStartState> = _state
 
     init {
 
-        if (gameProcessShared.state.value.step == null){
+        if (gameProcessShared.state.value.step == null) {
             _state.value = state.value.copy(
                 step = gameSettings.state.value.chooseTeams.first()
             )
-        }else{
+        } else {
             _state.value = state.value.copy(
                 step = gameProcessShared.state.value.step
             )
@@ -40,14 +38,16 @@ class TapToStartViewModel(
     }
 
     override fun obtainEvent(event: TapToStartEvent) {
-        when(event){
-            is TapToStartEvent.Start -> {start(event.navController)}
+        when (event) {
+            is TapToStartEvent.Start -> {
+                start(event.navController)
+            }
         }
     }
 
     private fun start(navController: NavController) {
 
-        if (gameProcessShared.state.value.step == null){
+        if (gameProcessShared.state.value.step == null) {
             val newTeams = mutableListOf<TeamsScore>()
             val teamNames = mutableListOf<String>()
             gameSettings.state.value.chooseTeams.forEach {
@@ -56,7 +56,8 @@ class TapToStartViewModel(
             }
             gameProcessShared.state.value = gameProcessShared.state.value.copy(
                 teams = newTeams,
-                stackWords = repository.getWordsByDictionariesName(gameSettings.state.value.chooseDictionaries),
+                stackWords = repository
+                    .getWordsByDictionariesName(gameSettings.state.value.chooseDictionaries),
                 showedWords = listOf(),
                 step = Team(name = newTeams.first().teamName, image = newTeams.first().image)
 

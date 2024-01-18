@@ -17,7 +17,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AliesTheme {
-                Box(modifier = Modifier.fillMaxSize().background(AppTheme.colors.primaryBackground)){
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(AppTheme.colors.primaryBackground)
+                ) {
                     Navigation()
                 }
             }

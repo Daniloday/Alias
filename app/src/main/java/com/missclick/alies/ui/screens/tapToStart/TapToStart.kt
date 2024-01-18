@@ -31,9 +31,11 @@ fun TapToStart(navController: NavController, vw : TapToStartViewModel = koinView
 
     val context = LocalContext.current
     val viewState by vw.state.collectAsState()
+
     BackHandler {
 
     }
+
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -41,7 +43,7 @@ fun TapToStart(navController: NavController, vw : TapToStartViewModel = koinView
     ) {
 
         Text(
-            text = "${context.getString(R.string.turn)}",
+            text = context.getString(R.string.turn),
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
@@ -56,7 +58,7 @@ fun TapToStart(navController: NavController, vw : TapToStartViewModel = koinView
         ) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text(
-                    text = "${context.getString(R.string.start)}".uppercase(),
+                    text = context.getString(R.string.start).uppercase(),
                     style = AppTheme.typography.headerTextBold,
                     color = AppTheme.colors.primary
                 )
