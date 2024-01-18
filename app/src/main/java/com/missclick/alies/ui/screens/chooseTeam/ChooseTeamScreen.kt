@@ -53,13 +53,6 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
             color = AppTheme.colors.primary
         )
 
-        Divider(
-            modifier = Modifier
-                .padding(top = 8.dp, bottom = 8.dp)
-                .fillMaxWidth()
-                .height(1.dp), color = AppTheme.colors.primary
-        )
-
         LazyRow(state = LazyListState(viewState.choseTeamList.lastIndex),content = {
             itemsIndexed(viewState.choseTeamList) { _, item ->
                 SmallTeamCard(teamImage = item.image, teamName = item.name) {
@@ -68,54 +61,61 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
             }
         })
 
+        Divider(
+            modifier = Modifier
+                .padding(top = 8.dp, bottom = 8.dp)
+                .fillMaxWidth()
+                .height(1.dp), color = AppTheme.colors.primary
+        )
 
+//            LazyColumn(content = {
+//                itemsIndexed(viewState.teamList){
+//                        _, item ->
+//                    BigTeamCard(teamImage = item.image, teamName = item.name){
+//                        vm.obtainEvent(ChooseTeamEvent.TeamAllClick(item))
+//                    }
+//
+//                }
+//            })
 
-        LazyColumn(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.Center,
-            content = {
+        LazyColumn(modifier = Modifier.height(500.dp),verticalArrangement = Arrangement.spacedBy(8.dp), content = {
 
-                repeat((viewState.teamList.size - 1) / 2 + 1) {
-                    item {
-                        if (viewState.teamList.isNotEmpty()) {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                                modifier = Modifier.padding(vertical = 4.dp)
+            repeat((viewState.teamList.size - 1) / 2 + 1) {
+                item {
+                    if (viewState.teamList.isNotEmpty()) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            BigTeamCard(
+                                teamImage = viewState.teamList[it * 2].image,
+                                teamName = viewState.teamList[it * 2].name
                             ) {
+                                vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2]))
+                            }
+                            if (it * 2 + 1 != viewState.teamList.size) {
                                 BigTeamCard(
-                                    teamImage = viewState.teamList[it * 2].image,
-                                    teamName = viewState.teamList[it * 2].name
+                                    teamImage = viewState.teamList[it * 2 + 1].image,
+                                    teamName = viewState.teamList[it * 2 + 1].name
                                 ) {
-                                    vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2]))
-                                }
-                                if (it * 2 + 1 != viewState.teamList.size) {
-                                    BigTeamCard(
-                                        teamImage = viewState.teamList[it * 2 + 1].image,
-                                        teamName = viewState.teamList[it * 2 + 1].name
-                                    ) {
-                                        vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2 + 1]))
-                                    }
+                                    vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2 + 1]))
                                 }
                             }
                         }
                     }
                 }
-            })
+            }
+        })
 
-        if (viewState.choseTeamList.size > 1) {
-            Column(
-                Modifier.height(150.dp),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                NextButton() {
-                    vm.obtainEvent(ChooseTeamEvent.Next(navController))
-                }
+        Column(
+            Modifier.fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            NextButton() {
+                vm.obtainEvent(ChooseTeamEvent.Next(context, navController))
             }
         }
-
-
     }
+
+
 
 
 }
