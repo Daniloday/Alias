@@ -47,11 +47,6 @@ fun TeamResultScreen(navController: NavController, vm: TeamResultScreenViewModel
             style = AppTheme.typography.headerTextThin,
             color = AppTheme.colors.primary
         )
-        Text(
-            text = "${context.getString(R.string.round)} 7",
-            style = AppTheme.typography.headerTextThin,
-            color = AppTheme.colors.primary
-        )
 
         LazyColumn(modifier = Modifier.height(300.dp),content = {
             itemsIndexed(viewState.teams) { i, item ->
