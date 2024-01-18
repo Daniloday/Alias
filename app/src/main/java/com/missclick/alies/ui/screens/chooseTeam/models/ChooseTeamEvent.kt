@@ -1,9 +1,11 @@
 package com.missclick.alies.ui.screens.chooseTeam.models
 
+import android.content.Context
+import androidx.navigation.NavController
 import com.missclick.alies.data.models.Team
 
 sealed class ChooseTeamEvent{
-    object Next : ChooseTeamEvent()
+    class Next(val context: Context, val navController: NavController) : ChooseTeamEvent()
     class TeamAllClick(val item : Team) : ChooseTeamEvent()
     class TeamChoseClick(val item : Team) : ChooseTeamEvent()
 }
