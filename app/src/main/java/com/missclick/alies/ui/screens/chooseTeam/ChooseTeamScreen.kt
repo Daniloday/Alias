@@ -64,7 +64,6 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
                 SmallTeamCard(teamImage = item.image, teamName = item.name) {
                     vm.obtainEvent(ChooseTeamEvent.TeamChoseClick(item))
                 }
-
             }
         })
 
