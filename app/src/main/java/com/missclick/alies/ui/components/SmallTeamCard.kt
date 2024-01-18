@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -34,9 +35,9 @@ fun SmallTeamCard(teamImage: Int, teamName: String, click: (() -> Unit)? = null)
         modifier = Modifier
             .padding(4.dp)
             .size(196.dp, 48.dp)
+            .clip(RoundedCornerShape(20.dp))
             .clickable(
-                enabled = (click != null), indication = rememberRipple(radius = 20.dp),
-                interactionSource = MutableInteractionSource()
+                enabled = click != null
             ) { click?.invoke() },
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(0.dp),
