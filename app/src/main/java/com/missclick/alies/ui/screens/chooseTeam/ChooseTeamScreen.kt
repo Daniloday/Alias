@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
@@ -54,7 +55,7 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
             color = AppTheme.colors.primary
         )
 
-        LazyRow(content = {
+        LazyRow(state = LazyListState(viewState.choseTeamList.lastIndex),content = {
             itemsIndexed(viewState.choseTeamList) { _, item ->
                 SmallTeamCard(teamImage = item.image, teamName = item.name) {
                     vm.obtainEvent(ChooseTeamEvent.TeamChoseClick(item))

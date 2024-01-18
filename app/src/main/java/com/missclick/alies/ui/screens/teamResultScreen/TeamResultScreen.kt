@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -52,9 +53,9 @@ fun TeamResultScreen(navController: NavController, vm: TeamResultScreenViewModel
             itemsIndexed(viewState.teams) { i, item ->
 
                 Row(
-                    Modifier.fillMaxWidth(),
+                    Modifier.padding(horizontal = 30.dp).fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
 
                     SmallTeamCard(teamImage = item.image, teamName = item.teamName)
