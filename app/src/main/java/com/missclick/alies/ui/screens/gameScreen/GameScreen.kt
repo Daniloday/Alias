@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.gameScreen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -45,14 +46,18 @@ fun GameScreen(navController: NavController, vm : GameViewModel = koinViewModel(
 
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
+    BackHandler {
 
+    }
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Row(
-            Modifier.padding(horizontal = 30.dp).fillMaxWidth(),
+            Modifier
+                .padding(horizontal = 30.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

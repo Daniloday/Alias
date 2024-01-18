@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.tapToStart
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,9 @@ fun TapToStart(navController: NavController, vw : TapToStartViewModel = koinView
 
     val context = LocalContext.current
     val viewState by vw.state.collectAsState()
+    BackHandler {
 
+    }
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
