@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.gameSettingsScreen
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -92,17 +93,17 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 )
                 Row(
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 8.dp).padding(horizontal = 30.dp)
                         .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
                         .rotate(-90f)
-                        .clickable {
+                        .clickable(enabled = viewState.timeBooleanLess) {
                             vm.obtainEvent(GameSettingsEvent.ChangeTime(false))
-                        }, false
+                        }, viewState.timeBooleanLess
                     )
 
                     Text(
@@ -115,9 +116,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
                         .rotate(90f)
-                        .clickable {
+                        .clickable(viewState.timeBooleanMore) {
                             vm.obtainEvent(GameSettingsEvent.ChangeTime(true))
-                        }, true
+                        }, viewState.timeBooleanMore
                     )
 
                 }
@@ -138,18 +139,18 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 )
                 Row(
                     modifier = Modifier
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 8.dp).padding(horizontal = 30.dp)
                         .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.Center,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
 
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
                         .rotate(-90f)
-                        .clickable {
+                        .clickable(enabled = viewState.goalBooleanLess) {
                             vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
-                        }, true
+                        }, viewState.goalBooleanLess
                     )
 
                     Text(
@@ -162,9 +163,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
                         .rotate(90f)
-                        .clickable {
-                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
-                        }, true
+                        .clickable(enabled = viewState.goalBooleanMore) {
+                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(true))
+                        }, viewState.goalBooleanMore
                     )
 
                 }

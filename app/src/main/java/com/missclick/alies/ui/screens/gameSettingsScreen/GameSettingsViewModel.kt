@@ -42,16 +42,33 @@ class GameSettingsViewModel(
     private fun changeTime(up: Boolean) {
         when (up) {
             true -> {
-                if (state.value.timeGameSettings < 120)
+                if (state.value.timeGameSettings < 110){
                     _state.value = state.value.copy(
-                        timeGameSettings = state.value.timeGameSettings + 10
+                        timeGameSettings = state.value.timeGameSettings + 10,
+                        timeBooleanLess = true,
+                        timeBooleanMore = true
                     )
+                }
+                else if(state.value.timeGameSettings==110){
+                    _state.value = state.value.copy(
+                        timeGameSettings = state.value.timeGameSettings + 10,
+                        timeBooleanMore = false
+                    )
+                }
             }
 
             false -> {
-                if (state.value.timeGameSettings > 30) {
+                if (state.value.timeGameSettings > 40) {
                     _state.value = state.value.copy(
-                        timeGameSettings = state.value.timeGameSettings - 10
+                        timeGameSettings = state.value.timeGameSettings - 10,
+                        timeBooleanMore = true,
+                        timeBooleanLess = true
+                    )
+                }
+                else if(state.value.timeGameSettings == 40){
+                    _state.value = state.value.copy(
+                        timeGameSettings = state.value.timeGameSettings - 10,
+                        timeBooleanLess = false
                     )
                 }
             }
@@ -61,16 +78,33 @@ class GameSettingsViewModel(
     private fun changeGoal(up: Boolean) {
         when (up) {
             true -> {
-                if (state.value.goalGameSettings < 240)
+                if (state.value.goalGameSettings < 230){
                     _state.value = state.value.copy(
-                        goalGameSettings = state.value.goalGameSettings + 10
+                        goalGameSettings = state.value.goalGameSettings + 10,
+                        goalBooleanLess = true,
+                        goalBooleanMore = true
                     )
+                }
+                else if(state.value.goalGameSettings == 230){
+                    _state.value = state.value.copy(
+                        goalGameSettings = state.value.goalGameSettings + 10,
+                        goalBooleanMore = false
+                    )
+                }
             }
 
             false -> {
-                if (state.value.goalGameSettings > 30) {
+                if (state.value.goalGameSettings > 40) {
                     _state.value = state.value.copy(
-                        goalGameSettings = state.value.goalGameSettings - 10
+                        goalGameSettings = state.value.goalGameSettings - 10,
+                        goalBooleanMore = true,
+                        goalBooleanLess = true
+                    )
+                }
+                else if (state.value.goalGameSettings==40){
+                    _state.value = state.value.copy(
+                        goalGameSettings = state.value.goalGameSettings - 10,
+                        goalBooleanLess = false
                     )
                 }
             }
