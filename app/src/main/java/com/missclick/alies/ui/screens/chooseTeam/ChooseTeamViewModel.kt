@@ -17,12 +17,11 @@ import kotlinx.coroutines.flow.StateFlow
 class ChooseTeamViewModel(
     repository: Repository,
     private val gameSettings: GameSettings
-) : ViewModel(), EventHandler<ChooseTeamEvent>
-{
+) : ViewModel(), EventHandler<ChooseTeamEvent> {
 
 
-    private val _state : MutableStateFlow<ChooseTeamState> = MutableStateFlow(ChooseTeamState())
-    val state : StateFlow<ChooseTeamState> = _state
+    private val _state: MutableStateFlow<ChooseTeamState> = MutableStateFlow(ChooseTeamState())
+    val state: StateFlow<ChooseTeamState> = _state
 
 
     init {
@@ -32,27 +31,29 @@ class ChooseTeamViewModel(
     }
 
     override fun obtainEvent(event: ChooseTeamEvent) {
-        when(event){
-            is ChooseTeamEvent.Next -> {next(event.context, event.navController)}
-            is ChooseTeamEvent.TeamAllClick -> {teamAllClick(event.item)}
-            is ChooseTeamEvent.TeamChoseClick -> {teamChoseClick(event.item)}
+        when (event) {
+            is ChooseTeamEvent.Next -> {
+                next(event.navController)
+            }
+
+            is ChooseTeamEvent.TeamAllClick -> {
+                teamAllClick(event.item)
+            }
+
+            is ChooseTeamEvent.TeamChoseClick -> {
+                teamChoseClick(event.item)
+            }
         }
     }
 
-    private fun next(context: Context, navController: NavController){
-        if (state.value.choseTeamList.size < 2){
-            toastAboutEmpty(context)
-        }else{
-            gameSettings.state.value = gameSettings.state.value.copy(
-                chooseTeams = state.value.choseTeamList
-            )
-            navController.navigate(NavigationTree.CHOOSE_VOCABULARY.name)
-        }
-
-
+    private fun next(navController: NavController) {
+        gameSettings.state.value = gameSettings.state.value.copy(
+            chooseTeams = state.value.choseTeamList
+        )
+        navController.navigate(NavigationTree.CHOOSE_VOCABULARY.name)
     }
 
-    private fun teamAllClick(item : Team){
+    private fun teamAllClick(item: Team) {
         val new = state.value.teamList.toMutableList()
         new.remove(item)
         _state.value = state.value.copy(
@@ -61,7 +62,7 @@ class ChooseTeamViewModel(
         )
     }
 
-    private fun teamChoseClick(item : Team){
+    private fun teamChoseClick(item: Team) {
         val new = state.value.choseTeamList.toMutableList()
         new.remove(item)
         _state.value = state.value.copy(
@@ -70,7 +71,7 @@ class ChooseTeamViewModel(
         )
     }
 
-    private fun toastAboutEmpty(context: Context){
+    private fun toastAboutEmpty(context: Context) {
         Toast.makeText(context, "Not enough teams to play!", Toast.LENGTH_SHORT).show()
     }
 

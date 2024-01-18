@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.gameSettingsScreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,7 +9,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.shape.GenericShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -17,6 +25,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -24,11 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.NextButton
+import com.missclick.alies.ui.components.TriangleArrow
 import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.chooseTeam.ChooseTeamViewModel
 import com.missclick.alies.ui.screens.chooseVocabulary.models.ChooseVocabularyEvent
 import com.missclick.alies.ui.screens.gameSettingsScreen.models.GameSettingsEvent
 import com.missclick.alies.ui.theme.AppTheme
+import com.missclick.alies.ui.theme.AppTheme.colors
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -38,10 +50,7 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
     val viewState by vm.state.collectAsState()
 
     val teamList = mutableListOf(
-        "Lions",
-        "Lions",
-        "Lions",
-        "Lions"
+        "Lions", "Lions", "Lions", "Lions"
     )
 
     Column(
@@ -50,111 +59,122 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
         verticalArrangement = Arrangement.SpaceBetween
     ) {
 
+        Text(
+            text = "${context.getString(R.string.game_settings)}",
+            style = AppTheme.typography.headerTextBold,
+            color = AppTheme.colors.primary,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp), color = AppTheme.colors.primary
+        )
+
         Column(
-            Modifier.fillMaxWidth(),
+            modifier = Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceAround
         ) {
-            Text(
-                text = "${context.getString(R.string.game_settings)}",
-                style = AppTheme.typography.headerTextBold,
-                color = AppTheme.colors.primary
-            )
-
-            Divider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(1.dp), color = AppTheme.colors.primary
-            )
-        }
-
-        Column(
-            Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "${context.getString(R.string.time)}",
-                style = AppTheme.typography.headerTextThin,
-                color = AppTheme.colors.primary
-            )
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(30.dp),
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                Modifier
+                    .fillMaxWidth(0.8f)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(AppTheme.colors.secondaryBackgroundShadow),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceAround
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_right),
-                    contentDescription = "arrow",
-                    modifier = Modifier
-                        .size(30.dp)
-                        .scale(scaleX = -1f, scaleY = 1f).clickable {
-                                                                  vm.obtainEvent(GameSettingsEvent.ChangeTime(false))
-                        },
-                    tint = AppTheme.colors.primary
-                )
-
                 Text(
-                    text = "${viewState.timeGameSettings}",
-                    style = AppTheme.typography.headerTextThin,
+                    text = "${context.getString(R.string.time)}",
+                    style = AppTheme.typography.headerTextBold,
                     color = AppTheme.colors.primary
                 )
-
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_right),
-                    contentDescription = "arrow",
-                    modifier = Modifier.size(30.dp).clickable {
-                        vm.obtainEvent(GameSettingsEvent.ChangeTime(true))
-                    },
-                    tint = AppTheme.colors.primary
-                )
-            }
-        }
-
-
-        Column(
-            Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "${context.getString(R.string.goals)}",
-                style = AppTheme.typography.headerTextThin,
-                color = AppTheme.colors.primary
-            )
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(30.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_right),
-                    contentDescription = "arrow",
+                Row(
                     modifier = Modifier
+                        .padding(vertical = 8.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TriangleArrow(modifier = Modifier
                         .size(30.dp)
-                        .scale(scaleX = -1f, scaleY = 1f).clickable {
+                        .rotate(-90f)
+                        .clickable {
+                            vm.obtainEvent(GameSettingsEvent.ChangeTime(false))
+                        }, false
+                    )
+
+                    Text(
+                        text = "${viewState.timeGameSettings}",
+                        style = AppTheme.typography.headerTextThin,
+                        color = AppTheme.colors.primary,
+                        modifier = Modifier.padding(horizontal = 48.dp)
+                    )
+
+                    TriangleArrow(modifier = Modifier
+                        .size(30.dp)
+                        .rotate(90f)
+                        .clickable {
+                            vm.obtainEvent(GameSettingsEvent.ChangeTime(true))
+                        }, true
+                    )
+
+                }
+            }
+
+
+            Column(
+                Modifier
+                    .fillMaxWidth(0.8f)
+                    .clip(RoundedCornerShape(20.dp))
+                    .background(AppTheme.colors.secondaryBackgroundShadow),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "${context.getString(R.string.goals)}",
+                    style = AppTheme.typography.headerTextBold,
+                    color = AppTheme.colors.primary
+                )
+                Row(
+                    modifier = Modifier
+                        .padding(vertical = 8.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    TriangleArrow(modifier = Modifier
+                        .size(30.dp)
+                        .rotate(-90f)
+                        .clickable {
                             vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
-                        },
-                    tint = AppTheme.colors.primary
-                )
+                        }, true
+                    )
 
-                Text(
-                    text = "${viewState.goalGameSettings}",
-                    style = AppTheme.typography.headerTextThin,
-                    color = AppTheme.colors.primary
-                )
+                    Text(
+                        text = "${viewState.goalGameSettings}",
+                        style = AppTheme.typography.headerTextThin,
+                        color = AppTheme.colors.primary,
+                        modifier = Modifier.padding(horizontal = 48.dp)
+                    )
 
-                Icon(
-                    painter = painterResource(id = R.drawable.arrow_right),
-                    contentDescription = "arrow",
-                    modifier = Modifier.size(30.dp).clickable {
-                        vm.obtainEvent(GameSettingsEvent.ChangeGoal(true))
-                    },
-                    tint = AppTheme.colors.primary
-                )
+                    TriangleArrow(modifier = Modifier
+                        .size(30.dp)
+                        .rotate(90f)
+                        .clickable {
+                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
+                        }, true
+                    )
+
+                }
             }
         }
 
 
-
-
         Column(
-            Modifier.fillMaxWidth(),
+            Modifier.height(150.dp),
+            verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             NextButton() {
@@ -162,12 +182,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 navController.navigate(NavigationTree.PREPARE_FOR_GAME.name)
             }
 
-            Spacer(modifier = Modifier.size(24.dp))
-
         }
 
 
     }
-
 
 }
