@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.roundResultScreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,7 +9,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -30,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.missclick.alies.R
+import com.missclick.alies.data.sharedStates.gameProcess.ShowedWords
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.RoundScoreGameScreen
 import com.missclick.alies.ui.components.TeamImageCard
@@ -58,19 +63,19 @@ fun RoundResultScreen(navController: NavController, vm: RoundResultScreenViewMod
 
         var list = viewState.roundWords
 
-
-        LazyColumn(modifier = Modifier.height(300.dp),content = {
+        LazyColumn(modifier = Modifier.padding(horizontal = 36.dp).fillMaxWidth().height(300.dp),content = {
             itemsIndexed(list) { i, item ->
 
                 Row(
                     Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
                         text = item.word,
                         style = AppTheme.typography.roundWordsText,
-                        color = AppTheme.colors.primary
+                        color = AppTheme.colors.primary,
+                        modifier = Modifier.sizeIn(maxWidth = 240.dp)
                     )
 
                     Icon(

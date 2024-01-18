@@ -19,14 +19,14 @@ import com.missclick.alies.ui.theme.AppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BigTeamCard(teamImage: Int, teamName: String, click : (() -> Unit)? = null) {
+fun BigTeamCard(teamImage: Int, teamName: String, click: (() -> Unit)? = null) {
 
     Card(
-        modifier = Modifier.size(128.dp, 100.dp),
+        modifier = Modifier.size(144.dp, 100.dp),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(0.dp),
         colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground),
-        onClick = {click?.invoke()}
+        onClick = { click?.invoke() }
     ) {
 
         Column(
@@ -34,8 +34,16 @@ fun BigTeamCard(teamImage: Int, teamName: String, click : (() -> Unit)? = null) 
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            Image(painter = painterResource(id = teamImage), contentDescription = "team image", modifier = Modifier.size(60.dp))
-            Text(text = teamName, style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary)
+            Image(
+                painter = painterResource(id = teamImage),
+                contentDescription = "team image",
+                modifier = Modifier.size(60.dp)
+            )
+            Text(
+                text = teamName,
+                style = AppTheme.typography.teamCardText,
+                color = AppTheme.colors.primary
+            )
 
         }
 
