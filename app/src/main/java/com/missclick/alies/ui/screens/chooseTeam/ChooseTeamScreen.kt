@@ -14,11 +14,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +34,7 @@ import com.missclick.alies.ui.components.SmallTeamCard
 import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.chooseTeam.models.ChooseTeamEvent
 import com.missclick.alies.ui.theme.AppTheme
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -39,6 +42,8 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
 
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         Modifier.fillMaxSize(),
@@ -60,7 +65,7 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
                 .height(1.dp), color = AppTheme.colors.primary
         )
 
-        LazyRow(state = LazyListState(viewState.choseTeamList.lastIndex),content = {
+        LazyRow(state = listState, content = {
             itemsIndexed(viewState.choseTeamList) { _, item ->
                 SmallTeamCard(teamImage = item.image, teamName = item.name) {
                     vm.obtainEvent(ChooseTeamEvent.TeamChoseClick(item))
@@ -87,6 +92,9 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
                                     teamName = viewState.teamList[it * 2].name
                                 ) {
                                     vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2]))
+                                    coroutineScope.launch {
+                                        listState.animateScrollToItem(index = viewState.choseTeamList.size - 1)
+                                    }
                                 }
                                 if (it * 2 + 1 != viewState.teamList.size) {
                                     BigTeamCard(
@@ -94,6 +102,9 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
                                         teamName = viewState.teamList[it * 2 + 1].name
                                     ) {
                                         vm.obtainEvent(ChooseTeamEvent.TeamAllClick(viewState.teamList[it * 2 + 1]))
+                                        coroutineScope.launch {
+                                            listState.animateScrollToItem(index = viewState.choseTeamList.size - 1)
+                                        }
                                     }
                                 }
                             }
