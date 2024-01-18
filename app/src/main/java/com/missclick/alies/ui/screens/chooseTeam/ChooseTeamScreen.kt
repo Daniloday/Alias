@@ -58,6 +58,14 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
             color = AppTheme.colors.primary
         )
 
+        LazyRow(state = LazyListState(viewState.choseTeamList.lastIndex),content = {
+            itemsIndexed(viewState.choseTeamList) { _, item ->
+                SmallTeamCard(teamImage = item.image, teamName = item.name) {
+                    vm.obtainEvent(ChooseTeamEvent.TeamChoseClick(item))
+                }
+            }
+        })
+
         Divider(
             modifier = Modifier
                 .padding(top = 8.dp, bottom = 8.dp)
