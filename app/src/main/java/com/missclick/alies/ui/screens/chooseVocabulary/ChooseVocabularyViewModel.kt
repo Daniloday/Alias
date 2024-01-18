@@ -1,9 +1,14 @@
 package com.missclick.alies.ui.screens.chooseVocabulary
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import com.missclick.alies.R
 import com.missclick.alies.common.EventHandler
 import com.missclick.alies.data.repository.Repository
 import com.missclick.alies.data.sharedStates.GameSettings
+import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.chooseVocabulary.models.ChooseVocabularyEvent
 import com.missclick.alies.ui.screens.chooseVocabulary.models.ChooseVocabularyState
 import com.missclick.alies.ui.screens.chooseVocabulary.models.Vocabulary
@@ -15,20 +20,15 @@ class ChooseVocabularyViewModel(
     private val gameSettings: GameSettings
 ) : ViewModel(), EventHandler<ChooseVocabularyEvent> {
 
-    private val _state : MutableStateFlow<ChooseVocabularyState>
-        = MutableStateFlow(ChooseVocabularyState())
-    val state : StateFlow<ChooseVocabularyState> = _state
+    private val _state: MutableStateFlow<ChooseVocabularyState> =
+        MutableStateFlow(ChooseVocabularyState())
+    val state: StateFlow<ChooseVocabularyState> = _state
 
 
     init {
         val names = repository.getDictionariesNames()
-        val vocabularyList = mutableListOf<Vocabulary>()
-        names.forEach {
-            vocabularyList.add(
-                Vocabulary(
-                it
-            )
-            )
+        val vocabularyList = names.map {
+            Vocabulary(name = it)
         }
         _state.value = state.value.copy(
             vocabularyList = vocabularyList
@@ -36,38 +36,51 @@ class ChooseVocabularyViewModel(
     }
 
     override fun obtainEvent(event: ChooseVocabularyEvent) {
-        when(event){
-            is ChooseVocabularyEvent.Next -> { next() }
-            is ChooseVocabularyEvent.ClickVocabulary -> {clickVocabulary(event.vocabulary)}
+        when (event) {
+            is ChooseVocabularyEvent.Next -> {
+                next(navController = event.navController, context = event.context)
+            }
+
+            is ChooseVocabularyEvent.ClickVocabulary -> {
+                clickVocabulary(event.vocabulary)
+            }
         }
     }
 
-    private fun next(){
-        val vocabularies = mutableListOf<String>()
-        state.value.vocabularyList.forEach {
-            if (it.isSelected) vocabularies.add(it.name)
+    private fun next(navController : NavController, context: Context) {
+
+        val vocabularySelected = state.value.vocabularyList.filter {
+            it.isSelected
+        }.map {
+            it.name
         }
-        gameSettings.state.value = gameSettings.state.value.copy(
-            chooseDictionaries = vocabularies
-        )
+
+        if (vocabularySelected.isEmpty()){
+            Toast.makeText(context, context.getString(R.string.no_chose_vocabulary), Toast.LENGTH_SHORT).show()
+        }else{
+            gameSettings.state.value = gameSettings.state.value.copy(
+                chooseDictionaries = vocabularySelected
+            )
+
+            navController.navigate(NavigationTree.GAME_SETTINGS.name)
+        }
+
     }
 
     private fun clickVocabulary(vocabulary: Vocabulary) {
-        val newVocabularyList = mutableListOf<Vocabulary>()
 
-        state.value.vocabularyList.forEach {
-            if (it != vocabulary){
-                newVocabularyList.add(it)
-            }else{
-                newVocabularyList.add(
-                    Vocabulary(name = it.name, isSelected = !it.isSelected)
-                )
+        val newVocabularyList = state.value.vocabularyList.map {
+            if (it != vocabulary) {
+                it
+            } else {
+                Vocabulary(name = it.name, isSelected = !it.isSelected)
             }
         }
 
         _state.value = state.value.copy(
             vocabularyList = newVocabularyList
         )
+
     }
 
 

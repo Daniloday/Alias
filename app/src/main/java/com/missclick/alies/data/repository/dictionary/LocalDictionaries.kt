@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.missclick.alies.R
 import java.io.IOException
 import java.io.InputStream
+import java.util.Random
 
 class LocalDictionaries(private val context: Context, private val gson: Gson) : ILocalDictionaries {
     override fun getNames(): List<String> {
@@ -25,7 +26,7 @@ class LocalDictionaries(private val context: Context, private val gson: Gson) : 
                 words.addAll(it.value)
             }
         }
-        return words
+        return words.shuffled(Random(System.currentTimeMillis()))
     }
 
     private fun convertJsonToMap() : Map<String, List<String>> {

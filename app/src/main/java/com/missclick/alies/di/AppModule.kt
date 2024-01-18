@@ -40,7 +40,7 @@ val appModule = module {
         RoundResultScreenViewModel(get())
     }
     viewModel{
-        GameViewModel(get(),get())
+        GameViewModel(get(),get(), get())
     }
 
 }

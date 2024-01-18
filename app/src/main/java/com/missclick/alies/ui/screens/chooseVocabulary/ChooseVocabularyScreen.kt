@@ -23,7 +23,6 @@ import androidx.navigation.NavController
 import com.missclick.alies.R
 import com.missclick.alies.ui.components.NextButton
 import com.missclick.alies.ui.components.VocabularyCard
-import com.missclick.alies.ui.navigation.NavigationTree
 import com.missclick.alies.ui.screens.chooseVocabulary.models.ChooseVocabularyEvent
 import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
@@ -76,8 +75,7 @@ fun ChooseVocabularyScreen(
                 .padding(bottom = 24.dp)
         ) {
             NextButton {
-                vm.obtainEvent(ChooseVocabularyEvent.Next)
-                navController.navigate(NavigationTree.GAME_SETTINGS.name)
+                vm.obtainEvent(ChooseVocabularyEvent.Next(navController, context))
             }
         }
 
