@@ -10,7 +10,8 @@ data class Colors (
     val secondaryBackground : Color,
     val accent: Color,
     val primary: Color,
-    val primaryShadow: Color
+    val primaryShadow: Color,
+    val secondaryBackgroundShadow : Color
 )
 
 
@@ -19,7 +20,8 @@ val darkColorPalette = Colors(
     secondaryBackground = Color(0xFF3B3486),
     accent = Color(0xFF864AF9),
     primary = Color(0xFFF8E55A),
-    primaryShadow = Color(0x1AF8E55A)
+    primaryShadow = Color(0x1AF8E55A),
+    secondaryBackgroundShadow = Color(0x803B3486)
 )
 
 

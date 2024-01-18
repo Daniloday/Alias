@@ -16,30 +16,30 @@ import com.missclick.alies.ui.screens.teamResultScreen.TeamResultScreen
 import com.missclick.alies.ui.screens.win.WinScreen
 
 @Composable
-fun Navigation() {
+fun Navigation(){
 
     val navHostController = rememberNavController()
 
-    NavHost(navController = navHostController, startDestination = NavigationTree.MENU.name) {
-        composable(NavigationTree.MENU.name) {
+    NavHost(navController = navHostController, startDestination = NavigationTree.GAME_SETTINGS.name){
+        composable(NavigationTree.MENU.name){
             MenuScreen(navHostController)
         }
-        composable(NavigationTree.CHOOSE_TEAM.name) {
+        composable(NavigationTree.CHOOSE_TEAM.name){
             ChooseTeamScreen(navHostController)
         }
-        composable(NavigationTree.CHOOSE_VOCABULARY.name) {
+        composable(NavigationTree.CHOOSE_VOCABULARY.name){
             ChooseVocabularyScreen(navHostController)
         }
-        composable(NavigationTree.PREPARE_FOR_GAME.name) {
+        composable(NavigationTree.PREPARE_FOR_GAME.name){
             PrepareForGame(navHostController)
         }
-        composable(NavigationTree.TAP_TO_START.name) {
+        composable(NavigationTree.TAP_TO_START.name){
             TapToStart(navHostController)
         }
-        composable(NavigationTree.GAME_SCREEN.name) {
+        composable(NavigationTree.GAME_SCREEN.name){
             GameScreen(navHostController)
         }
-        composable(NavigationTree.ROUND_RESULT_SCREEN.name) {
+        composable(NavigationTree.ROUND_RESULT_SCREEN.name){
             RoundResultScreen(navHostController)
         }
         composable(NavigationTree.TEAM_RESULT_SCREEN.name) {
@@ -48,7 +48,7 @@ fun Navigation() {
         composable(NavigationTree.WIN.name) {
             WinScreen()
         }
-        composable(NavigationTree.GAME_SETTINGS.name) {
+        composable(NavigationTree.GAME_SETTINGS.name){
             GameSettingsScreen(navHostController)
         }
     }

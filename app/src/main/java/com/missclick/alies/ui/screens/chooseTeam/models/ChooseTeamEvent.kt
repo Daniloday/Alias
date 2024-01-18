@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import com.missclick.alies.data.models.Team
 
 sealed class ChooseTeamEvent{
-    class Next(val context: Context, val navController: NavController) : ChooseTeamEvent()
+    class Next(val navController: NavController) : ChooseTeamEvent()
     class TeamAllClick(val item : Team) : ChooseTeamEvent()
     class TeamChoseClick(val item : Team) : ChooseTeamEvent()
 }
