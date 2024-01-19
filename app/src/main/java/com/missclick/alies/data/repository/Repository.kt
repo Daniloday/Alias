@@ -14,6 +14,7 @@ class Repository(
 ) : IRepository {
 
     override fun getAllTeams(): List<Team> {
+        val s = setOf<String>("")
         return localTeams.getAll()
     }
 

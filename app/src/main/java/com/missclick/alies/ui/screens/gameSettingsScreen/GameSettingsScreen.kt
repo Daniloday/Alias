@@ -28,7 +28,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -50,10 +49,6 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
 
-    val teamList = mutableListOf(
-        "Lions", "Lions", "Lions", "Lions"
-    )
-
     Column(
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -61,7 +56,7 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
     ) {
 
         Text(
-            text = "${context.getString(R.string.game_settings)}",
+            text = context.getString(R.string.game_settings),
             style = AppTheme.typography.headerTextBold,
             color = AppTheme.colors.primary,
             modifier = Modifier.padding(top = 8.dp)
@@ -87,7 +82,7 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 verticalArrangement = Arrangement.SpaceAround
             ) {
                 Text(
-                    text = "${context.getString(R.string.time)}",
+                    text = context.getString(R.string.time),
                     style = AppTheme.typography.headerTextBold,
                     color = AppTheme.colors.primary
                 )
@@ -100,10 +95,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 ) {
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
-                        .rotate(-90f)
-                        .clickable(enabled = viewState.timeBooleanLess) {
-                            vm.obtainEvent(GameSettingsEvent.ChangeTime(false))
-                        }, viewState.timeBooleanLess
+                        .rotate(-90f),
+                        enable = viewState.timeBooleanLess,
+                        click = { vm.obtainEvent(GameSettingsEvent.ChangeTime(false))}
                     )
 
                     Text(
@@ -115,10 +109,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
 
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
-                        .rotate(90f)
-                        .clickable(viewState.timeBooleanMore) {
-                            vm.obtainEvent(GameSettingsEvent.ChangeTime(true))
-                        }, viewState.timeBooleanMore
+                        .rotate(90f),
+                        enable = viewState.timeBooleanMore,
+                        click = { vm.obtainEvent(GameSettingsEvent.ChangeTime(true))}
                     )
 
                 }
@@ -133,7 +126,7 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "${context.getString(R.string.goals)}",
+                    text = context.getString(R.string.goals),
                     style = AppTheme.typography.headerTextBold,
                     color = AppTheme.colors.primary
                 )
@@ -147,10 +140,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
 
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
-                        .rotate(-90f)
-                        .clickable(enabled = viewState.goalBooleanLess) {
-                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))
-                        }, viewState.goalBooleanLess
+                        .rotate(-90f),
+                        enable = viewState.goalBooleanLess,
+                        click = { vm.obtainEvent(GameSettingsEvent.ChangeGoal(false))}
                     )
 
                     Text(
@@ -162,10 +154,9 @@ fun GameSettingsScreen(navController: NavController, vm: GameSettingsViewModel =
 
                     TriangleArrow(modifier = Modifier
                         .size(30.dp)
-                        .rotate(90f)
-                        .clickable(enabled = viewState.goalBooleanMore) {
-                            vm.obtainEvent(GameSettingsEvent.ChangeGoal(true))
-                        }, viewState.goalBooleanMore
+                        .rotate(90f),
+                        enable = viewState.goalBooleanMore,
+                        click = { vm.obtainEvent(GameSettingsEvent.ChangeGoal(true))}
                     )
 
                 }

@@ -33,6 +33,7 @@ class Localization(val context: Context) : ILocalization {
         val languageDictionary = getIsoLanguageDictionary()
         val currentLanguage = getCurrent()
         val languageList = languageDictionary.values.toMutableList()
+        languageList.remove(currentLanguage)
         languageList.add(0, currentLanguage)
         return languageList
     }
@@ -51,10 +52,10 @@ class Localization(val context: Context) : ILocalization {
 
     private fun getIsoLanguageDictionary() : Map<String, Language>{
         return mapOf(
-            "en" to Language(name = "English", image = R.drawable.wolf, isoCode = "en"),
-            "ua" to Language(name = "Українська", image = R.drawable.wolf, isoCode = "ua"),
-            "ru" to Language(name = "Русский", image = R.drawable.wolf, isoCode = "ru"),
-            "es" to Language(name = "Español", image = R.drawable.wolf, isoCode = "es"),
+            "en" to Language(name = "English", image = R.drawable.english_lang, isoCode = "en"),
+            "ua" to Language(name = "Українська", image = R.drawable.ukraine_lang, isoCode = "ua"),
+            "ru" to Language(name = "Русский", image = R.drawable.russian_lang, isoCode = "ru"),
+            "es" to Language(name = "Español", image = R.drawable.spanish_lang, isoCode = "es"),
         )
     }
 
