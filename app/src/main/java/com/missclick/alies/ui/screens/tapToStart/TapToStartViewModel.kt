@@ -57,7 +57,9 @@ class TapToStartViewModel(
             gameProcessShared.state.value = gameProcessShared.state.value.copy(
                 teams = newTeams,
                 stackWords = repository
-                    .getWordsByDictionariesName(gameSettings.state.value.chooseDictionaries),
+                    .getWordsByDictionariesName(
+                        names = gameSettings.state.value.chooseDictionaries,
+                        languageIso = repository.getCurrentLanguage().isoCode),
                 showedWords = listOf(),
                 step = Team(name = newTeams.first().teamName, image = newTeams.first().image)
 

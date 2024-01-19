@@ -18,12 +18,12 @@ class Repository(
         return localTeams.getAll()
     }
 
-    override fun getDictionariesNames(): List<String> {
-        return localDictionaries.getNames()
+    override fun getDictionariesNames(languageIso: String): List<String> {
+        return localDictionaries.getNames(languageIso)
     }
 
-    override fun getWordsByDictionariesName(names: List<String>): List<String> {
-        return localDictionaries.getWordsByNames(names)
+    override fun getWordsByDictionariesName(names: List<String>, languageIso: String): List<String> {
+        return localDictionaries.getWordsByNames(names, languageIso)
     }
 
     override fun getCurrentLanguage(): Language {

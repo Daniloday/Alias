@@ -20,8 +20,10 @@ class MenuViewModel(
 
 
     init {
+        val currentLanguage = repository.getCurrentLanguage()
+        repository.setNewLanguage(currentLanguage.name)
         _state.value = state.value.copy(
-            currentLanguage = repository.getCurrentLanguage(),
+            currentLanguage = currentLanguage,
             allLanguages = repository.getAllLanguages(),
         )
 

@@ -11,9 +11,9 @@ interface IRepository {
 
 
     //words
-    fun getDictionariesNames() : List<String>
+    fun getDictionariesNames(languageIso: String) : List<String>
 
-    fun getWordsByDictionariesName(names : List<String>) : List<String>
+    fun getWordsByDictionariesName(names : List<String>, languageIso: String) : List<String>
 
 
     //localization

@@ -89,7 +89,7 @@ class GameViewModel(
 
     private fun addNewWordsToStack(){
         val words = repository.getWordsByDictionariesName(gameSettings.state.value
-            .chooseDictionaries).toMutableList()
+            .chooseDictionaries, repository.getCurrentLanguage().isoCode).toMutableList()
         words.add(0, gameProcessShared.state.value.stackWords.first())
         gameProcessShared.state.value = gameProcessShared.state.value.copy(
             stackWords = words

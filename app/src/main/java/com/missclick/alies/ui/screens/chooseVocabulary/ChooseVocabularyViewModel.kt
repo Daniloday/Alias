@@ -26,7 +26,7 @@ class ChooseVocabularyViewModel(
 
 
     init {
-        val names = repository.getDictionariesNames()
+        val names = repository.getDictionariesNames(repository.getCurrentLanguage().isoCode)
         val vocabularyList = names.map {
             Vocabulary(name = it)
         }
