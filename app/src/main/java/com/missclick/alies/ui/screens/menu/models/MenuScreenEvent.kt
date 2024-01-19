@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.menu.models
 
 sealed class MenuScreenEvent {
-    class changeLanguages(val languageName : String) : MenuScreenEvent()
+    class ChangeLanguages(val languageName : String) : MenuScreenEvent()
+    object OpenCloseCard : MenuScreenEvent()
 }
