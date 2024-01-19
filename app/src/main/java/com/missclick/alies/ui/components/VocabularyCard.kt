@@ -2,7 +2,10 @@ package com.missclick.alies.ui.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.ui.screens.chooseVocabulary.models.Vocabulary
 import com.missclick.alies.ui.theme.AppTheme
@@ -38,16 +42,14 @@ fun VocabularyCard(vocabulary: Vocabulary, checkboxClick: () -> Unit) {
         onClick = { checkboxClick.invoke() }
     ) {
 
-        Box(
+        Row(
             Modifier
-                .fillMaxSize()
-                .align(Alignment.Start),
+                .fillMaxSize(), verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
                 modifier = Modifier
                     .padding(start = 24.dp)
                     .size(32.dp)
-                    .align(Alignment.CenterStart)
                     .clip(shape = RoundedCornerShape(10.dp))
                     .border(4.dp, AppTheme.colors.primary, shape = RoundedCornerShape(10.dp)),
             ) {
@@ -62,8 +64,9 @@ fun VocabularyCard(vocabulary: Vocabulary, checkboxClick: () -> Unit) {
                 )
             }
             Text(
-                text = vocabulary.name, modifier = Modifier.align(Alignment.Center),
-                style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary
+                text = vocabulary.name, modifier = Modifier.padding(start = 8.dp).fillMaxWidth(),
+                style = AppTheme.typography.teamCardText, color = AppTheme.colors.primary,
+                textAlign = TextAlign.Center
             )
         }
     }

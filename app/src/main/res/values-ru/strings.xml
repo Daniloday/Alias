@@ -37,6 +37,15 @@
     <string name="hedgehogs">Ежи</string>
     <string name="giraffes">Жирафы</string>
     <string name="agamas">Агамы</string>
+    <string name="created_by_missclick">created by missclick</string>
+    <string name="rules">Правила</string>
+    <string name="rule1">1. Выберите команды</string>
+    <string name="rule2">2. Выбирайте словари</string>
+    <string name="rule3">3. Установите время раунда и цель победы</string>
+    <string name="rule4">4. Запустите игру</string>
+    <string name="rule5">Цель — объяснить слово другому игроку, используя синонимы, антонимы, описания и различные подсказки</string>
+    <string name="rule6">Если вы не можете объяснить слово, его можно пропустить, но имейте в виду, что за это будут сняты баллы</string>
+    <string name="rule7">Удачи!</string>
 
 
 </resources>
