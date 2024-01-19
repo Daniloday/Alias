@@ -129,4 +129,6 @@ fun ChooseTeamScreen(navController: NavController, vm: ChooseTeamViewModel = koi
     }
 
 
+
+
 }
