@@ -4,12 +4,12 @@
     <string name="app_name">Alias</string>
 
 
-    <string name="choose_team">Selección de equipo</string>
-    <string name="choose_vocabulary">Selección de diccionario</string>
-    <string name="game_settings">Configuraciones de juego</string>
+    <string name="choose_team">Equipo</string>
+    <string name="choose_vocabulary">Diccionarios</string>
+    <string name="game_settings">Configuración</string>
 
 
-    <string name="next_button">Más</string>
+    <string name="next_button">Seguir</string>
 
     <string name="time">Tiempo</string>
     <string name="seconds">seg</string>
@@ -20,8 +20,8 @@
     <string name="turn">Mover</string>
     <string name="start">Comenzar</string>
 
-    <string name="skip">Saltar</string>
-    <string name="guessed">Adivinado</string>
+    <string name="skip">Omitido</string>
+    <string name="guessed">Adivinada</string>
 
     <string name="results">Resultado</string>
 
@@ -29,7 +29,7 @@
 
     <string name="congratulations">Felicitaciones\na los ganadores.!!!</string>
 
-    <string name="tap_to_start_new_game">Haga clic para comenzar</string>
+    <string name="tap_to_start_new_game">Empezar de nuevo</string>
 
 
 

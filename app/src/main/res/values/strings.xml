@@ -2,9 +2,9 @@
     <string name="app_name">Alias</string>
 
 
-    <string name="choose_team">Choose Team</string>
-    <string name="choose_vocabulary">Choose Vocabulary</string>
-    <string name="game_settings">Game Settings</string>
+    <string name="choose_team">Teams</string>
+    <string name="choose_vocabulary">Dictionaries</string>
+    <string name="game_settings">Settings</string>
 
 
     <string name="next_button">Next</string>
@@ -27,7 +27,7 @@
 
     <string name="congratulations">Congratulations\nto the\nwinners!!!</string>
 
-    <string name="tap_to_start_new_game">tap to start new game</string>
+    <string name="tap_to_start_new_game">Start new game</string>
 
 
 
