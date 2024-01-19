@@ -10,5 +10,6 @@ enum class NavigationTree {
     WIN,
     CHOOSE_TEAM,
     CHOOSE_VOCABULARY,
-    GAME_SETTINGS
+    GAME_SETTINGS,
+    INFO_SCREEN
 }

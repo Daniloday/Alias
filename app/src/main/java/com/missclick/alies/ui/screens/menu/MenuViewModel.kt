@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import com.missclick.alies.common.EventHandler
 
 import com.missclick.alies.data.repository.Repository
-import com.missclick.alies.ui.screens.gameSettingsScreen.models.GameSettingsEvent
-import com.missclick.alies.ui.screens.gameSettingsScreen.models.GameSettingsTeamState
 import com.missclick.alies.ui.screens.menu.models.MenuScreenEvent
 import com.missclick.alies.ui.screens.menu.models.MenuScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,18 +20,32 @@ class MenuViewModel(
 
 
     init {
+        _state.value = state.value.copy(
+            currentLanguage = repository.getCurrentLanguage(),
+            allLanguages = repository.getAllLanguages(),
+        )
 
     }
 
     override fun obtainEvent(event: MenuScreenEvent) {
         when (event) {
-            is MenuScreenEvent.changeLanguages -> {
-                MenuScreenEvent.changeLanguages(event.languageName)
+            is MenuScreenEvent.ChangeLanguages -> {
+                changeLanguages(event.languageName)
+            }
+            is MenuScreenEvent.OpenCloseCard -> {
+                openCloseCard()
             }
         }
     }
 
-    private fun changeLanguages(languages: String) {
+    private fun changeLanguages(language: String) {
+        repository.setNewLanguage(language)
+        openCloseCard()
+    }
 
+    private fun openCloseCard(){
+        _state.value = state.value.copy(
+             cardClose = !state.value.cardClose
+        )
     }
 }
