@@ -2,6 +2,7 @@ package com.missclick.alies.ui.screens.menu
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -40,15 +42,28 @@ fun MenuScreen(navController: NavController, vm: MenuViewModel = koinViewModel()
 
     val viewState by vm.state.collectAsState()
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .clickable(
+            enabled = !viewState.cardClose,
+            interactionSource = MutableInteractionSource(),
+            indication = null
+        ) {
+            vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
+        }) {
 
         Image(painter = painterResource(id = R.drawable.play_menu), contentDescription = null,
             modifier = Modifier
                 .size(300.dp)
                 .align(Alignment.Center)
                 .clip(CircleShape)
-                .clickable {
-                    navController.navigate(NavigationTree.CHOOSE_TEAM.name)
+                .clickable() {
+                    if (viewState.cardClose) {
+                        navController.navigate(NavigationTree.CHOOSE_TEAM.name)
+                    } else {
+                        vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
+                    }
+
                 })
 
         Row(
@@ -63,7 +78,15 @@ fun MenuScreen(navController: NavController, vm: MenuViewModel = koinViewModel()
             Image(
                 painter = painterResource(id = R.drawable.info_button),
                 contentDescription = null, modifier = Modifier
-                    .size(48.dp).clip(CircleShape).clickable { navController.navigate(NavigationTree.INFO_SCREEN.name) }
+                    .size(48.dp)
+                    .clip(CircleShape)
+                    .clickable {
+                        if (viewState.cardClose) {
+                            navController.navigate(NavigationTree.INFO_SCREEN.name)
+                        } else {
+                            vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
+                        }
+                    }
             )
 
 
@@ -87,10 +110,13 @@ fun MenuScreen(navController: NavController, vm: MenuViewModel = koinViewModel()
 
                 }
             } else {
+
                 Card(
                     modifier = Modifier
                         .width(264.dp)
-                        .wrapContentHeight(), shape = RoundedCornerShape(20.dp), elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
+                        .wrapContentHeight(),
+                    shape = RoundedCornerShape(20.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
                     colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
                 ) {
                     Column(Modifier.fillMaxWidth()) {
@@ -125,6 +151,8 @@ fun MenuScreen(navController: NavController, vm: MenuViewModel = koinViewModel()
                     }
 
                 }
+
+
             }
 
 

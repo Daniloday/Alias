@@ -36,6 +36,19 @@
     <string name="hedgehogs">Hedgehogs</string>
     <string name="giraffes">Giraffes</string>
     <string name="agamas">Agamas</string>
+
     <string name="no_chose_vocabulary">No dictionary selected</string>
+
+    <string name="created_by_missclick">created by missclick</string>
+
+    <string name="rules">Rules</string>
+
+    <string name="rule1">1. Select teams</string>
+    <string name="rule2">2. Choose dictionaries</string>
+    <string name="rule3">3. Set round time and victory goal</string>
+    <string name="rule4">4. Start the game</string>
+    <string name="rule5">The objective is to explain a word to another player using synonyms, antonyms, descriptions, and various hints</string>
+    <string name="rule6">If you cannot explain the word, you can skip it, but keep in mind that points will be deducted for doing so</string>
+    <string name="rule7">Good luck!</string>
 
 </resources>
