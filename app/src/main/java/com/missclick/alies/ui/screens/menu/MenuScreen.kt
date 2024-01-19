@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.menu
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +26,9 @@ import com.missclick.alies.ui.navigation.NavigationTree
 
 @Composable
 fun MenuScreen(navController: NavController) {
+    BackHandler {
 
+    }
     Box(modifier = Modifier.fillMaxSize()) {
 
         Row(

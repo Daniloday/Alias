@@ -1,6 +1,7 @@
 package com.missclick.alies.ui.screens.roundResultScreen
 
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,6 +40,9 @@ fun RoundResultScreen(
 
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
+    BackHandler {
+
+    }
 
     Column(
         Modifier.fillMaxSize(),
