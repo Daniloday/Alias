@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.missclick.alies.ui.theme.AppTheme
 
@@ -27,8 +28,9 @@ fun WordCard(word: String) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
                 text = word,
-                style = AppTheme.typography.nextButtonText,
-                color = AppTheme.colors.primary
+                style = AppTheme.typography.headerTextBold,
+                color = AppTheme.colors.primary,
+                textAlign = TextAlign.Center
             )
 
         }
