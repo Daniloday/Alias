@@ -40,7 +40,10 @@ class Localization(val context: Context) : ILocalization {
 
     override fun setNewLanguage(language: String) {
         val languageDictionary = getIsoLanguageDictionary()
+
         val isoCode = languageDictionary.filter { it.value.name == language }.keys.first()
+        println("set new lang $isoCode")
+        println(language)
         sharedPreferences.edit().putString(localizationPref, isoCode).apply()
         val locale = Locale(isoCode)
         Locale.setDefault(locale)
@@ -53,7 +56,7 @@ class Localization(val context: Context) : ILocalization {
     private fun getIsoLanguageDictionary() : Map<String, Language>{
         return mapOf(
             "en" to Language(name = "English", image = R.drawable.english_lang, isoCode = "en"),
-            "ua" to Language(name = "Українська", image = R.drawable.ukraine_lang, isoCode = "ua"),
+            "uk" to Language(name = "Українська", image = R.drawable.ukraine_lang, isoCode = "uk"),
             "ru" to Language(name = "Русский", image = R.drawable.russian_lang, isoCode = "ru"),
             "es" to Language(name = "Español", image = R.drawable.spanish_lang, isoCode = "es"),
         )

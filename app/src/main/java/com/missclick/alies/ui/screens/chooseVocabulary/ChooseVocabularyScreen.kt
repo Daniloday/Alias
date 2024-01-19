@@ -74,7 +74,7 @@ fun ChooseVocabularyScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 NextButton {
-                    vm.obtainEvent(ChooseVocabularyEvent.Next(navController, context))
+                    vm.obtainEvent(ChooseVocabularyEvent.Next(navController))
                 }
             }
         }

@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Alias</string>
+    <string name="choose_team">Выбор команды</string>
+    <string name="choose_vocabulary">Выбор Словаря</string>
+    <string name="game_settings">Настройки игры</string>
+    <string name="next_button">Далее</string>
+
+    <string name="time">Время</string>
+    <string name="seconds">сек</string>
+    <string name="goals">Цель</string>
+    <string name="teams">Команды</string>
+    <string name="points">очков</string>
+
+    <string name="turn">Ход</string>
+    <string name="start">Старт</string>
+
+    <string name="skip">Пропустить</string>
+    <string name="guessed">Отгадано</string>
+
+    <string name="results">Результаты</string>
+
+    <string name="round">роунд</string>
+
+    <string name="congratulations">Поздравляем\nпобедителей!!!</string>
+
+    <string name="tap_to_start_new_game">Нажми чтобы начать</string>
+
+
+
+    <string name="lions">Львы</string>
+    <string name="capybaras">Копибары</string>
+    <string name="tigers">Тигры</string>
+    <string name="rhinos">Носороги</string>
+    <string name="rabbits">Зайцы</string>
+    <string name="owls">Совы</string>
+    <string name="wolves">Волки</string>
+    <string name="hedgehogs">Ежи</string>
+    <string name="giraffes">Жирафы</string>
+    <string name="agamas">Агамы</string>
+
+
+</resources>

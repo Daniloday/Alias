@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">Alias</string>
+
+
+    <string name="choose_team">Вибір команди</string>
+    <string name="choose_vocabulary">Вибір словника</string>
+    <string name="game_settings">Налаштування</string>
+
+
+    <string name="next_button">Далі</string>
+
+    <string name="time">Час</string>
+    <string name="seconds">сек</string>
+    <string name="goals">Ціль</string>
+    <string name="teams">Команди</string>
+    <string name="points">окулярів</string>
+
+    <string name="turn">Хід</string>
+    <string name="start">Почати</string>
+
+    <string name="skip">Пропустити</string>
+    <string name="guessed">Відгадано</string>
+
+    <string name="results">Результати</string>
+
+    <string name="round">раунд</string>
+
+    <string name="congratulations">Вітаємо\nпереможців!!!</string>
+
+    <string name="tap_to_start_new_game">Тисни щоб грати</string>
+
+
+
+    <string name="lions">Леви</string>
+    <string name="capybaras">Копібари</string>
+    <string name="tigers">Тигри</string>
+    <string name="rhinos">Носороги</string>
+    <string name="rabbits">Зайці</string>
+    <string name="owls">Сови</string>
+    <string name="wolves">Вовки</string>
+    <string name="hedgehogs">Їжаки</string>
+    <string name="giraffes">Жирафи</string>
+    <string name="agamas">Агами</string>
+
+</resources>

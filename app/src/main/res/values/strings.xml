@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Alias</string>
+
+
     <string name="choose_team">Choose Team</string>
     <string name="choose_vocabulary">Choose Vocabulary</string>
+    <string name="game_settings">Game Settings</string>
+
+
     <string name="next_button">Next</string>
 
     <string name="time">Time</string>
@@ -24,7 +29,7 @@
 
     <string name="tap_to_start_new_game">tap to start new game</string>
 
-    <string name="game_settings">Game Settings:</string>
+
 
     <string name="lions">Lions</string>
     <string name="capybaras">Capybaras</string>
@@ -36,6 +41,6 @@
     <string name="hedgehogs">Hedgehogs</string>
     <string name="giraffes">Giraffes</string>
     <string name="agamas">Agamas</string>
-    <string name="no_chose_vocabulary">No dictionary selected</string>
+
 
 </resources>

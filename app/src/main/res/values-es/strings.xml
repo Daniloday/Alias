@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Alias</string>
+
+
+    <string name="choose_team">Selección de equipo</string>
+    <string name="choose_vocabulary">Selección de diccionario</string>
+    <string name="game_settings">Configuraciones de juego</string>
+
+
+    <string name="next_button">Más</string>
+
+    <string name="time">Tiempo</string>
+    <string name="seconds">seg</string>
+    <string name="goals">Objetivo</string>
+    <string name="teams">Equipos</string>
+    <string name="points">puntos</string>
+
+    <string name="turn">Mover</string>
+    <string name="start">Comenzar</string>
+
+    <string name="skip">Saltar</string>
+    <string name="guessed">Adivinado</string>
+
+    <string name="results">Resultado</string>
+
+    <string name="round">redondo</string>
+
+    <string name="congratulations">Felicitaciones\na los ganadores.!!!</string>
+
+    <string name="tap_to_start_new_game">Haga clic para comenzar</string>
+
+
+
+    <string name="lions">Leones</string>
+    <string name="capybaras">Capibaras</string>
+    <string name="tigers">Tigres</string>
+    <string name="rhinos">Rinocerontes</string>
+    <string name="rabbits">Liebres</string>
+    <string name="owls">Búhos</string>
+    <string name="wolves">Lobos</string>
+    <string name="hedgehogs">Erizos</string>
+    <string name="giraffes">Jirafas</string>
+    <string name="agamas">Agamas</string>
+
+</resources>
