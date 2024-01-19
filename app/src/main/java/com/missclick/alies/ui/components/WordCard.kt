@@ -28,7 +28,8 @@ fun WordCard(word: String) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
                 text = word,
-                style = AppTheme.typography.headerTextBold,
+                style = if (word.length > 10) AppTheme.typography.smallShowedWordText
+                    else AppTheme.typography.headerTextBold,
                 color = AppTheme.colors.primary,
                 textAlign = TextAlign.Center
             )

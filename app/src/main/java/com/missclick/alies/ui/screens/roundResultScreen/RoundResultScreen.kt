@@ -40,6 +40,7 @@ fun RoundResultScreen(
 
     val context = LocalContext.current
     val viewState by vm.state.collectAsState()
+
     BackHandler {
 
     }
@@ -68,8 +69,14 @@ fun RoundResultScreen(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
-                            text = item.word,
+                            text = if (item.word.length > 13)
+                                item.word.replaceRange(
+                                    startIndex = 11,
+                                    endIndex = item.word.lastIndex + 1,
+                                    replacement = "...")
+                            else item.word,
                             style = AppTheme.typography.roundWordsText,
+                            maxLines = 1,
                             color = AppTheme.colors.primary,
                             modifier = Modifier.sizeIn(maxWidth = 240.dp)
                         )

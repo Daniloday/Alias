@@ -18,7 +18,8 @@ data class Typography(
     val roundCardText: TextStyle,
     val roundWordsText: TextStyle,
     val skipWordText: TextStyle,
-    val guessedWordText: TextStyle
+    val guessedWordText: TextStyle,
+    val smallShowedWordText : TextStyle
 )
 
 
@@ -61,6 +62,11 @@ val typography = Typography(
     guessedWordText = TextStyle(
         fontFamily = FontFamily(Font(R.font.playbold)),
         fontSize = 30.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    smallShowedWordText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 24.sp,
         fontWeight = FontWeight.Bold
     )
 
