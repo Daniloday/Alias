@@ -34,7 +34,7 @@ val appModule = module {
         TapToStartViewModel(get(), get(), get())
     }
     viewModel {
-        TeamResultScreenViewModel(get())
+        TeamResultScreenViewModel(get(),get())
     }
     viewModel {
         RoundResultScreenViewModel(get())

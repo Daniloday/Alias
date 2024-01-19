@@ -1,5 +1,6 @@
 package com.missclick.alies.ui.screens.menu
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -38,10 +39,12 @@ import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MenuScreen(navController: NavController, vm: MenuViewModel = koinViewModel()) {
+fun MenuScreen(navController: NavController) {
 
-    val viewState by vm.state.collectAsState()
+    BackHandler {
 
+    }
+    Box(modifier = Modifier.fillMaxSize()) {
     Box(modifier = Modifier
         .fillMaxSize()
         .clickable(
