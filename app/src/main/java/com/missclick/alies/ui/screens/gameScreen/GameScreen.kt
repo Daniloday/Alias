@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.missclick.alies.R
@@ -89,8 +90,9 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
                         text = context.getString(R.string.skip).uppercase(),
-                        style = AppTheme.typography.teamCardText,
-                        color = AppTheme.colors.primary
+                        style = AppTheme.typography.skipWordText,
+                        color = AppTheme.colors.primary,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -105,7 +107,7 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Text(
                         text = context.getString(R.string.guessed).uppercase(),
-                        style = AppTheme.typography.headerTextBold,
+                        style = AppTheme.typography.guessedWordText,
                         color = AppTheme.colors.primary
                     )
                 }

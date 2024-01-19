@@ -11,12 +11,14 @@ import com.missclick.alies.R
 
 
 data class Typography(
-    val headerTextBold : TextStyle,
-    val headerTextThin : TextStyle,
-    val nextButtonText : TextStyle,
-    val teamCardText : TextStyle,
-    val roundCardText : TextStyle,
-    val roundWordsText : TextStyle
+    val headerTextBold: TextStyle,
+    val headerTextThin: TextStyle,
+    val nextButtonText: TextStyle,
+    val teamCardText: TextStyle,
+    val roundCardText: TextStyle,
+    val roundWordsText: TextStyle,
+    val skipWordText: TextStyle,
+    val guessedWordText: TextStyle
 )
 
 
@@ -34,7 +36,7 @@ val typography = Typography(
     nextButtonText = TextStyle(
         fontFamily = FontFamily(Font(R.font.playbold)),
         fontSize = 48.sp,
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Bold
     ),
     teamCardText = TextStyle(
         fontFamily = FontFamily(Font(R.font.playregular)),
@@ -50,6 +52,16 @@ val typography = Typography(
         fontFamily = FontFamily(Font(R.font.playregular)),
         fontSize = 32.sp,
         fontWeight = FontWeight.Normal
+    ),
+    skipWordText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
+    ),
+    guessedWordText = TextStyle(
+        fontFamily = FontFamily(Font(R.font.playbold)),
+        fontSize = 30.sp,
+        fontWeight = FontWeight.Bold
     )
 
 
