@@ -39,119 +39,131 @@ import com.missclick.alies.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MenuScreen(navController: NavController) {
+fun MenuScreen(navController: NavController, vm : MenuViewModel = koinViewModel()) {
 
     BackHandler {
 
     }
+
+    val viewState by vm.state.collectAsState()
+
     Box(modifier = Modifier.fillMaxSize()) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .clickable(
-            enabled = !viewState.cardClose,
-            interactionSource = MutableInteractionSource(),
-            indication = null
-        ) {
-            vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
-        }) {
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .clickable(
+                enabled = !viewState.cardClose,
+                interactionSource = MutableInteractionSource(),
+                indication = null
+            ) {
+                vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
+            }) {
 
-        Image(painter = painterResource(id = R.drawable.play_menu), contentDescription = null,
-            modifier = Modifier
-                .size(300.dp)
-                .align(Alignment.Center)
-                .clip(CircleShape)
-                .clickable() {
-                    if (viewState.cardClose) {
-                        navController.navigate(NavigationTree.CHOOSE_TEAM.name)
-                    } else {
-                        vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
-                    }
-
-                })
-
-        Row(
-            modifier = Modifier
-                .padding(top = 24.dp, start = 24.dp, end = 24.dp)
-                .fillMaxWidth()
-                .align(Alignment.TopCenter),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
-        ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.info_button),
-                contentDescription = null, modifier = Modifier
-                    .size(48.dp)
+            Image(painter = painterResource(id = R.drawable.play_menu), contentDescription = null,
+                modifier = Modifier
+                    .size(300.dp)
+                    .align(Alignment.Center)
                     .clip(CircleShape)
-                    .clickable {
+                    .clickable() {
                         if (viewState.cardClose) {
-                            navController.navigate(NavigationTree.INFO_SCREEN.name)
+                            navController.navigate(NavigationTree.CHOOSE_TEAM.name)
                         } else {
                             vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
                         }
-                    }
-            )
 
+                    })
 
-            if (viewState.cardClose) {
-                Card(
-                    modifier = Modifier
-                        .size(60.dp, 40.dp)
+            Row(
+                modifier = Modifier
+                    .padding(top = 24.dp, start = 24.dp, end = 24.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.TopCenter),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top
+            ) {
+
+                Image(
+                    painter = painterResource(id = R.drawable.info_button),
+                    contentDescription = null, modifier = Modifier
+                        .size(48.dp)
+                        .clip(CircleShape)
                         .clickable {
-                            vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
-                        }, shape = RoundedCornerShape(0),
-                    colors = CardDefaults.cardColors(containerColor = Color.Transparent)
-                ) {
-
-                    Box(Modifier.fillMaxSize()) {
-                        Image(
-                            painter = painterResource(id = viewState.currentLanguage.image),
-                            contentDescription = null, modifier = Modifier
-                                .size(60.dp, 40.dp), contentScale = ContentScale.FillBounds
-                        )
-                    }
-
-                }
-            } else {
-
-                Card(
-                    modifier = Modifier
-                        .width(264.dp)
-                        .wrapContentHeight(),
-                    shape = RoundedCornerShape(20.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
-                    colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
-                ) {
-                    Column(Modifier.fillMaxWidth()) {
-
-                        val listOfCountries = viewState.allLanguages
-
-                        for (countryList in listOfCountries) {
-                            Row(
-                                Modifier
-                                    .clickable() {
-                                        vm.obtainEvent(MenuScreenEvent.ChangeLanguages(countryList.name))
-                                    }
-                                    .padding(horizontal = 24.dp, vertical = 16.dp)
-                                    .fillMaxWidth()
-
-                            ) {
-                                Image(
-                                    painter = painterResource(id = countryList.image),
-                                    contentDescription = null, modifier = Modifier
-                                        .size(60.dp, 40.dp), contentScale = ContentScale.FillBounds
-                                )
-                                Spacer(modifier = Modifier.size(16.dp))
-                                Text(
-                                    text = countryList.name,
-                                    style = AppTheme.typography.teamCardText,
-                                    color = AppTheme.colors.primary
-                                )
+                            if (viewState.cardClose) {
+                                navController.navigate(NavigationTree.INFO_SCREEN.name)
+                            } else {
+                                vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
                             }
                         }
+                )
 
+
+                if (viewState.cardClose) {
+                    Card(
+                        modifier = Modifier
+                            .size(60.dp, 40.dp)
+                            .clickable {
+                                vm.obtainEvent(MenuScreenEvent.OpenCloseCard)
+                            }, shape = RoundedCornerShape(0),
+                        colors = CardDefaults.cardColors(containerColor = Color.Transparent)
+                    ) {
+
+                        Box(Modifier.fillMaxSize()) {
+                            Image(
+                                painter = painterResource(id = viewState.currentLanguage.image),
+                                contentDescription = null, modifier = Modifier
+                                    .size(60.dp, 40.dp), contentScale = ContentScale.FillBounds
+                            )
+                        }
 
                     }
+                } else {
+
+                    Card(
+                        modifier = Modifier
+                            .width(264.dp)
+                            .wrapContentHeight(),
+                        shape = RoundedCornerShape(20.dp),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 20.dp),
+                        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground)
+                    ) {
+                        Column(Modifier.fillMaxWidth()) {
+
+                            val listOfCountries = viewState.allLanguages
+
+                            for (countryList in listOfCountries) {
+                                Row(
+                                    Modifier
+                                        .clickable() {
+                                            vm.obtainEvent(
+                                                MenuScreenEvent.ChangeLanguages(
+                                                    countryList.name
+                                                )
+                                            )
+                                        }
+                                        .padding(horizontal = 24.dp, vertical = 16.dp)
+                                        .fillMaxWidth()
+
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = countryList.image),
+                                        contentDescription = null,
+                                        modifier = Modifier
+                                            .size(60.dp, 40.dp),
+                                        contentScale = ContentScale.FillBounds
+                                    )
+                                    Spacer(modifier = Modifier.size(16.dp))
+                                    Text(
+                                        text = countryList.name,
+                                        style = AppTheme.typography.teamCardText,
+                                        color = AppTheme.colors.primary
+                                    )
+                                }
+                            }
+
+
+                        }
+
+                    }
+
 
                 }
 
@@ -160,7 +172,5 @@ fun MenuScreen(navController: NavController) {
 
 
         }
-
-
     }
 }
