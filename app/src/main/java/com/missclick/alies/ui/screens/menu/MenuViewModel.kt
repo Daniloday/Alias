@@ -40,6 +40,9 @@ class MenuViewModel(
 
     private fun changeLanguages(language: String) {
         repository.setNewLanguage(language)
+        _state.value = state.value.copy(
+            currentLanguage = repository.getCurrentLanguage()
+        )
         openCloseCard()
     }
 
