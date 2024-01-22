@@ -1,19 +1,30 @@
 package com.missclick.alies.ui.screens.gameScreen
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -22,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.missclick.alies.R
@@ -43,74 +55,165 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
 
     }
 
-    Column(
-        Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Row(
-            Modifier
-                .padding(horizontal = 30.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceEvenly
         ) {
-
-            viewState.imageTeam?.let { TeamImageCard(teamImage = it) }
-
-            Text(
-                text = "${viewState.leftTime}",
-                style = AppTheme.typography.headerTextThin,
-                color = AppTheme.colors.primary
-            )
-
-            RoundScoreGameScreen(scoreRound = viewState.score)
-        }
-
-        WordCard(word = viewState.showedWord)
-
-
-
-
-        Row(
-            Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Card(
-                modifier = Modifier
-                    .size(100.dp)
-                    .alpha(0.5f),
-                shape = CircleShape,
-                colors = CardDefaults.cardColors(
-                    containerColor = AppTheme.colors.secondaryBackground
-                ),
-                onClick = { vm.obtainEvent(GameEvent.Skip(navController)) }
+            Row(
+                Modifier
+                    .padding(horizontal = 30.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+
+                viewState.imageTeam?.let { TeamImageCard(teamImage = it) }
+
+                Column(
+                    verticalArrangement = Arrangement.SpaceAround,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Card(
+                        modifier = Modifier
+                            .size(50.dp)
+                            .border(
+                                width = 1.dp,
+                                shape = RoundedCornerShape(20.dp), color = AppTheme.colors.accent
+                            ),
+                        shape = RoundedCornerShape(20.dp),
+                        elevation = CardDefaults.cardElevation(0.dp),
+                        colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground),
+                        onClick = {
+
+                        }
+                    ) {
+
+                        Row(
+                            Modifier.fillMaxSize(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Divider(
+                                Modifier
+                                    .fillMaxHeight(0.8f)
+                                    .width(2.dp), color = AppTheme.colors.primary
+                            )
+                            Spacer(modifier = Modifier.size(8.dp))
+                            Divider(
+                                Modifier
+                                    .fillMaxHeight(0.8f)
+                                    .width(2.dp), color = AppTheme.colors.primary
+                            )
+                        }
+
+                    }
                     Text(
-                        text = context.getString(R.string.skip).uppercase(),
-                        style = AppTheme.typography.skipWordText,
-                        color = AppTheme.colors.primary,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-            Card(
-                modifier = Modifier.size(200.dp),
-                shape = CircleShape,
-                colors = CardDefaults.cardColors(
-                    containerColor = AppTheme.colors.secondaryBackground
-                ),
-                onClick = { vm.obtainEvent(GameEvent.Guessed(navController)) }
-            ) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(
-                        text = context.getString(R.string.guessed).uppercase(),
-                        style = AppTheme.typography.guessedWordText,
+                        text = "${viewState.leftTime}",
+                        style = AppTheme.typography.headerTextThin,
                         color = AppTheme.colors.primary
                     )
+
                 }
+
+                RoundScoreGameScreen(scoreRound = viewState.score)
+            }
+
+            WordCard(word = viewState.showedWord)
+
+
+
+
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(
+                    modifier = Modifier
+                        .size(100.dp)
+                        .alpha(0.5f),
+                    shape = CircleShape,
+                    colors = CardDefaults.cardColors(
+                        containerColor = AppTheme.colors.secondaryBackground
+                    ),
+                    onClick = { vm.obtainEvent(GameEvent.Skip(navController)) }
+                ) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = context.getString(R.string.skip).uppercase(),
+                            style = AppTheme.typography.skipWordText,
+                            color = AppTheme.colors.primary,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+                Card(
+                    modifier = Modifier.size(200.dp),
+                    shape = CircleShape,
+                    colors = CardDefaults.cardColors(
+                        containerColor = AppTheme.colors.secondaryBackground
+                    ),
+                    onClick = { vm.obtainEvent(GameEvent.Guessed(navController)) }
+                ) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(
+                            text = context.getString(R.string.guessed).uppercase(),
+                            style = AppTheme.typography.guessedWordText,
+                            color = AppTheme.colors.primary
+                        )
+                    }
+                }
+            }
+        }
+
+        if (viewState.isPaused) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(AppTheme.colors.secondaryBackgroundShadow),
+                contentAlignment = Alignment.Center
+            ) {
+                AlertDialog(containerColor = AppTheme.colors.primaryBackground,
+                    dismissButton = {
+                        TextButton(onClick = { println("false") }, modifier = Modifier.size(160.dp, 48.dp), colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground)) {
+                            Text(
+                                text = "No",
+                                style = AppTheme.typography.teamCardText,
+                                color = AppTheme.colors.primary,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }, confirmButton = {
+                        TextButton(onClick = { println("false") }, modifier = Modifier.size(160.dp, 48.dp), colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground)) {
+                            Text(
+                                text = "Yes",
+                                style = AppTheme.typography.teamCardText,
+                                color = AppTheme.colors.primary,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    },
+                    title = {
+                        Text(
+                            text = "Game paused",
+                            modifier = Modifier.fillMaxSize(),
+                            style = AppTheme.typography.roundWordsText,
+                            textAlign = TextAlign.Center
+                        )},
+                    text = {
+                        Text(
+                            text = "Are you sure want to finish the game?",
+                            modifier = Modifier.fillMaxSize(),
+                            style = AppTheme.typography.roundWordsText,
+                            textAlign = TextAlign.Center
+                        )
+                    }, onDismissRequest = {}
+                )
+
             }
         }
     }
