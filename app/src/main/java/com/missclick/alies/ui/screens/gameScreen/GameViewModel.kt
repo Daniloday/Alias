@@ -41,9 +41,11 @@ class GameViewModel(
 
         viewModelScope.launch(Dispatchers.Main) {
             while (true){
-                _state.value = state.value.copy(
-                    leftTime = state.value.leftTime - 1
-                )
+                if (!state.value.isPaused){
+                    _state.value = state.value.copy(
+                        leftTime = state.value.leftTime - 1
+                    )
+                }
                 delay(1000)
                 if (state.value.leftTime == 0){
                     break
@@ -57,7 +59,16 @@ class GameViewModel(
         when(event){
             is GameEvent.Guessed -> {guessed(true, event.navController)}
             is GameEvent.Skip -> {guessed(false, event.navController)}
+            is GameEvent.ContinueGame -> { pause(enabled = false) }
+            is GameEvent.FinishGame -> { toMenu(event.navController) }
+            is GameEvent.Pause -> { pause(enabled = true) }
         }
+    }
+
+    private fun pause(enabled : Boolean){
+        _state.value = state.value.copy(
+            isPaused = enabled
+        )
     }
 
     private fun guessed(guessed : Boolean, navController: NavController){
@@ -94,6 +105,11 @@ class GameViewModel(
         gameProcessShared.state.value = gameProcessShared.state.value.copy(
             stackWords = words
         )
+    }
+
+    private fun toMenu(navController: NavController) {
+        gameProcessShared.state.value = gameProcessShared.state.value.copy( step = null)
+        navController.navigate(NavigationTree.MENU.name)
     }
 
 

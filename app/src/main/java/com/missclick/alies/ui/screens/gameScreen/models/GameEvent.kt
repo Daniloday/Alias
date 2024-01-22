@@ -10,5 +10,6 @@ sealed class GameEvent {
     class FinishGame(val navController: NavController) : GameEvent()
 
     object ContinueGame : GameEvent()
+    object Pause : GameEvent()
 
 }
