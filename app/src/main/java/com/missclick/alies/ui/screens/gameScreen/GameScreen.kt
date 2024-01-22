@@ -15,9 +15,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -32,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -171,24 +175,36 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(AppTheme.colors.secondaryBackgroundShadow),
+                    .background(AppTheme.colors.primaryBackgroundShadow),
                 contentAlignment = Alignment.Center
             ) {
-                AlertDialog(modifier = Modifier.fillMaxWidth(0.9f).height(400.dp),containerColor = AppTheme.colors.primaryBackground,
-                    dismissButton = {
-                        TextButton(onClick = { println("false") }, modifier = Modifier.size(160.dp, 48.dp), colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground)) {
+                AlertDialog(modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .wrapContentHeight()
+                    .border(2.dp, AppTheme.colors.accent, RoundedCornerShape(20.dp)),
+                    containerColor = AppTheme.colors.primaryBackground,
+                    tonalElevation = 10.dp,
+                    onDismissRequest = {
+                                       vm.obtainEvent(GameEvent.ContinueGame)
+                    },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.are_you_sure_want_finish),
+                            style = AppTheme.typography.smallShowedWordText,
+                            textAlign = TextAlign.Center,
+                            color = AppTheme.colors.primary,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    },
+                    confirmButton = {
+                        Button(
+                            modifier = Modifier.size(100.dp, 48.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground),
+                            onClick = {
+                                vm.obtainEvent(GameEvent.FinishGame(navController))
+                            }) {
                             Text(
-                                text = "No",
-                                style = AppTheme.typography.teamCardText,
-                                color = AppTheme.colors.primary,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-                    }, confirmButton = {
-                        TextButton(onClick = { println("false") }, modifier = Modifier.size(160.dp, 48.dp), colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground)) {
-                            Text(
-                                text = "Yes",
+                                text = stringResource(id = R.string.yes),
                                 style = AppTheme.typography.teamCardText,
                                 color = AppTheme.colors.primary,
                                 textAlign = TextAlign.Center,
@@ -196,25 +212,23 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                             )
                         }
                     },
-                    title = {
-                        Text(
-                            text = "Game paused",
-                            modifier = Modifier.fillMaxSize(),
-                            style = AppTheme.typography.roundWordsText,
-                            textAlign = TextAlign.Center,
-                            color = AppTheme.colors.primary
-                        )},
-                    text = {
-                        Text(
-                            text = "Are you sure want to finish the game?",
-                            modifier = Modifier.fillMaxSize(),
-                            style = AppTheme.typography.roundWordsText,
-                            textAlign = TextAlign.Center,
-                            color = AppTheme.colors.primary
-                        )
-                    }, onDismissRequest = {}
+                    dismissButton = {
+                        Button(
+                            modifier = Modifier.size(100.dp, 48.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground),
+                            onClick = {
+                                vm.obtainEvent(GameEvent.ContinueGame)
+                            }) {
+                            Text(
+                                text = stringResource(id = R.string.no),
+                                style = AppTheme.typography.teamCardText,
+                                color = AppTheme.colors.primary,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                    }
                 )
-
             }
         }
     }

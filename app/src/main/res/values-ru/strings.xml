@@ -46,6 +46,9 @@
     <string name="rule5">Цель — объяснить слово другому игроку, используя синонимы, антонимы, описания и различные подсказки</string>
     <string name="rule6">Если вы не можете объяснить слово, его можно пропустить, но имейте в виду, что за это будут сняты баллы</string>
     <string name="rule7">Удачи!</string>
+    <string name="are_you_sure_want_finish">Вы уверены, что хотите закончить игру?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 
 </resources>

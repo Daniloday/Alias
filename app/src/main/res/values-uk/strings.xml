@@ -53,5 +53,8 @@
     <string name="rule5">Мета полягає в тому, щоб пояснити слово іншому гравцеві, використовуючи синоніми, антоніми, описи та різні підказки</string>
     <string name="rule6">Якщо ви не можете пояснити слово, ви можете пропустити його, але майте на увазі, що бали будуть відніматися за це</string>
     <string name="rule7">Хай щастить!</string>
+    <string name="are_you_sure_want_finish">Ви дійсно хочете закінчити гру?</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
 
 </resources>

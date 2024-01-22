@@ -52,5 +52,8 @@
     <string name="rule5">El objetivo es explicar una palabra a otro jugador utilizando sinónimos, antónimos, descripciones y varias pistas</string>
     <string name="rule6">Si no puedes explicar la palabra, puedes omitirla, pero ten en cuenta que se te descontarán puntos por hacerlo.</string>
     <string name="rule7">¡Buena suerte!</string>
+    <string name="are_you_sure_want_finish">¿Estás seguro de que quieres terminar el juego?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 
 </resources>

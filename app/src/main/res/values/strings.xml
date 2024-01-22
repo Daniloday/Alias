@@ -55,4 +55,10 @@
     <string name="rule6">If you cannot explain the word, you can skip it, but keep in mind that points will be deducted for doing so</string>
     <string name="rule7">Good luck!</string>
 
+    <string name="are_you_sure_want_finish">Are you sure want to finish the game?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
+
 </resources>
