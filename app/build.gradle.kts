@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.missclick.alies"
+        applicationId = "com.missclick.alias"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,4 +71,5 @@ dependencies {
     implementation ("io.insert-koin:koin-android:3.5.0")
     implementation ("io.insert-koin:koin-androidx-compose:3.5.0")
     implementation ("com.google.code.gson:gson:2.10.1")
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
 }

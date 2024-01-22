@@ -8,7 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.missclick.alies.di.appModule
 import com.missclick.alies.di.dataModule
 import com.missclick.alies.ui.navigation.Navigation
@@ -31,10 +33,20 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AliesTheme {
+                val systemUiController = rememberSystemUiController()
+                val background = AppTheme.colors.primaryBackground
+
+                SideEffect {
+                    systemUiController.setSystemBarsColor(
+                        darkIcons = false,
+                        color = background
+                    )
+                }
+
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(AppTheme.colors.primaryBackground)
+                        .background(background)
                 ) {
                     Navigation()
                 }
