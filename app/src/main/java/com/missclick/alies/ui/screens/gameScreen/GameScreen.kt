@@ -64,7 +64,8 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
             Row(
                 Modifier
                     .padding(horizontal = 30.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .height(100.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -72,21 +73,18 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                 viewState.imageTeam?.let { TeamImageCard(teamImage = it) }
 
                 Column(
-                    verticalArrangement = Arrangement.SpaceAround,
+                    modifier = Modifier.fillMaxHeight(),
+                    verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Card(
                         modifier = Modifier
-                            .size(50.dp)
-                            .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(20.dp), color = AppTheme.colors.accent
-                            ),
-                        shape = RoundedCornerShape(20.dp),
-                        elevation = CardDefaults.cardElevation(0.dp),
+                            .size(40.dp),
+                        shape = RoundedCornerShape(10.dp),
+                        elevation = CardDefaults.cardElevation(20.dp),
                         colors = CardDefaults.cardColors(containerColor = AppTheme.colors.secondaryBackground),
                         onClick = {
-
+                            vm.obtainEvent(GameEvent.Pause)
                         }
                     ) {
 
@@ -97,18 +95,19 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                         ) {
                             Divider(
                                 Modifier
-                                    .fillMaxHeight(0.8f)
-                                    .width(2.dp), color = AppTheme.colors.primary
+                                    .fillMaxHeight(0.5f)
+                                    .width(4.dp), color = AppTheme.colors.primary
                             )
                             Spacer(modifier = Modifier.size(8.dp))
                             Divider(
                                 Modifier
-                                    .fillMaxHeight(0.8f)
-                                    .width(2.dp), color = AppTheme.colors.primary
+                                    .fillMaxHeight(0.5f)
+                                    .width(4.dp), color = AppTheme.colors.primary
                             )
                         }
 
                     }
+
                     Text(
                         text = "${viewState.leftTime}",
                         style = AppTheme.typography.headerTextThin,
@@ -175,7 +174,7 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                     .background(AppTheme.colors.secondaryBackgroundShadow),
                 contentAlignment = Alignment.Center
             ) {
-                AlertDialog(containerColor = AppTheme.colors.primaryBackground,
+                AlertDialog(modifier = Modifier.fillMaxWidth(0.9f).height(400.dp),containerColor = AppTheme.colors.primaryBackground,
                     dismissButton = {
                         TextButton(onClick = { println("false") }, modifier = Modifier.size(160.dp, 48.dp), colors = ButtonDefaults.buttonColors(containerColor = AppTheme.colors.secondaryBackground)) {
                             Text(
@@ -202,14 +201,16 @@ fun GameScreen(navController: NavController, vm: GameViewModel = koinViewModel()
                             text = "Game paused",
                             modifier = Modifier.fillMaxSize(),
                             style = AppTheme.typography.roundWordsText,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            color = AppTheme.colors.primary
                         )},
                     text = {
                         Text(
                             text = "Are you sure want to finish the game?",
                             modifier = Modifier.fillMaxSize(),
                             style = AppTheme.typography.roundWordsText,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            color = AppTheme.colors.primary
                         )
                     }, onDismissRequest = {}
                 )
