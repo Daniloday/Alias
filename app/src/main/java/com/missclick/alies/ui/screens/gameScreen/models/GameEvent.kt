@@ -7,4 +7,8 @@ sealed class GameEvent {
     class Guessed(val navController: NavController) : GameEvent()
     class Skip(val navController: NavController) : GameEvent()
 
+    class FinishGame(val navController: NavController) : GameEvent()
+
+    object ContinueGame : GameEvent()
+
 }
