@@ -25,6 +25,7 @@ val darkColorPalette = Colors(
     secondaryBackgroundShadow = Color(0x803B3486),
     primaryBackgroundShadow = Color(0xE6332941)
 
+
 )
 
 

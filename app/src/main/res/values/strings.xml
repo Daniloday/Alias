@@ -51,8 +51,8 @@
     <string name="rule2">2. Choose dictionaries</string>
     <string name="rule3">3. Set round time and victory goal</string>
     <string name="rule4">4. Start the game</string>
-    <string name="rule5">The purpose is to explain a word to another player using synonyms, antonyms, descriptions, and various hints</string>
-    <string name="rule6">If you cannot explain the word, you can skip it, but keep in mind that points will be deducted for doing so</string>
+    <string name="rule5">The goal is to explain the word to the other player using synonyms, antonyms, descriptions, and various clues</string>
+    <string name="rule6">If you can\'t explain a word, you can skip it, but be aware that points will be deducted for doing so</string>
     <string name="rule7">Good luck!</string>
 
     <string name="are_you_sure_want_finish">Are you sure want to finish the game?</string>

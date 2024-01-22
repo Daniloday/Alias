@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Alias</string>
+    <string name="app_name">Элиас</string>
     <string name="choose_team">Команды</string>
     <string name="choose_vocabulary">Словари</string>
     <string name="game_settings">Настройки</string>
@@ -40,7 +40,7 @@
     <string name="created_by_missclick">created by missclick</string>
     <string name="rules">Правила</string>
     <string name="rule1">1. Выберите команды</string>
-    <string name="rule2">2. Выбирайте словари</string>
+    <string name="rule2">2. Выберите словари</string>
     <string name="rule3">3. Установите время раунда и цель победы</string>
     <string name="rule4">4. Запустите игру</string>
     <string name="rule5">Цель — объяснить слово другому игроку, используя синонимы, антонимы, описания и различные подсказки</string>

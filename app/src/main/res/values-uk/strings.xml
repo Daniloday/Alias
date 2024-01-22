@@ -2,7 +2,7 @@
 <resources>
 
 
-    <string name="app_name">Alias</string>
+    <string name="app_name">Еліас</string>
 
 
     <string name="choose_team">Команди</string>
@@ -46,7 +46,7 @@
     <string name="agamas">Агами</string>
     <string name="created_by_missclick">created by missclick</string>
     <string name="rules">Правила</string>
-    <string name="rule1">1. Оберіть команду</string>
+    <string name="rule1">1. Оберіть команди</string>
     <string name="rule2">2. Виберіть словники</string>
     <string name="rule3">3. Встановіть час раунду та мету для перемоги</string>
     <string name="rule4">4. Почніть гру</string>

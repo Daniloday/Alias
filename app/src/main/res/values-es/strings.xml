@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Alias</string>
+    <string name="app_name">Elias</string>
 
 
     <string name="choose_team">Equipo</string>
@@ -49,8 +49,8 @@
     <string name="rule2">2. Elige diccionarios</string>
     <string name="rule3">3. Establecer el tiempo de la ronda y el objetivo de victoria</string>
     <string name="rule4">4. Comienza el juego</string>
-    <string name="rule5">El objetivo es explicar una palabra a otro jugador utilizando sinónimos, antónimos, descripciones y varias pistas</string>
-    <string name="rule6">Si no puedes explicar la palabra, puedes omitirla, pero ten en cuenta que se te descontarán puntos por hacerlo.</string>
+    <string name="rule5">El objetivo es explicar la palabra al otro jugador utilizando sinónimos, antónimos, descripciones y diversas pistas.</string>
+    <string name="rule6">Si no puedes explicar una palabra, puedes omitirla, pero ten en cuenta que se te restarán puntos por hacerlo</string>
     <string name="rule7">¡Buena suerte!</string>
     <string name="are_you_sure_want_finish">¿Estás seguro de que quieres terminar el juego?</string>
     <string name="yes">Sí</string>
