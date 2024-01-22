@@ -41,6 +41,9 @@ class TeamResultScreenViewModel(
     }
 
     private fun newGame(navController: NavController){
+        gameProcessShared.state.value = gameProcessShared.state.value.copy(
+            step = null,
+        )
         navController.navigate(NavigationTree.MENU.name)
     }
 

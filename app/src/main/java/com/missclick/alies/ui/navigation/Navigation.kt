@@ -14,7 +14,6 @@ import com.missclick.alies.ui.screens.prepareForGame.PrepareForGame
 import com.missclick.alies.ui.screens.roundResultScreen.RoundResultScreen
 import com.missclick.alies.ui.screens.tapToStart.TapToStart
 import com.missclick.alies.ui.screens.teamResultScreen.TeamResultScreen
-import com.missclick.alies.ui.screens.win.WinScreen
 
 @Composable
 fun Navigation(){
@@ -45,9 +44,6 @@ fun Navigation(){
         }
         composable(NavigationTree.TEAM_RESULT_SCREEN.name) {
             TeamResultScreen(navHostController)
-        }
-        composable(NavigationTree.WIN.name) {
-            WinScreen()
         }
         composable(NavigationTree.GAME_SETTINGS.name){
             GameSettingsScreen(navHostController)

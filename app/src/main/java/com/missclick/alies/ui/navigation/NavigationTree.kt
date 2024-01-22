@@ -7,7 +7,6 @@ enum class NavigationTree {
     GAME_SCREEN,
     ROUND_RESULT_SCREEN,
     TEAM_RESULT_SCREEN,
-    WIN,
     CHOOSE_TEAM,
     CHOOSE_VOCABULARY,
     GAME_SETTINGS,
